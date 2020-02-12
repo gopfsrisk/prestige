@@ -1,0 +1,9 @@
+setup.py
+prestige/__init__.py
+prestige/general.py
+prestige/preprocessing.py
+prestige.egg-info/PKG-INFO
+prestige.egg-info/SOURCES.txt
+prestige.egg-info/dependency_links.txt
+prestige.egg-info/not-zip-safe
+prestige.egg-info/top_level.txt
