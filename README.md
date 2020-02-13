@@ -88,6 +88,15 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 		<td>dict_mode: <i>dict, features and corresponding mode</i>
 </table>
 
+```
+>>> from prestige.preprocessing import ImputerMode
+
+>>> transformer = ImputerMode(list_cols=list_cols, inplace=True)
+>>> X_train = transformer.fit_transform(X_train)
+>>> X_valid = transformer.transform(X_valid)
+```
+
+
 #
 
 <h3>prestige.preprocessing.TargetEncoder</h3>
@@ -109,3 +118,10 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 		<td>list_dict_: <i>list, categories within each feature end corresponding central tendency metric of the outcome variable.</i>
 </table>
 
+```
+>>> from prestige.preprocessing import TargetEncoder
+
+>>> transformer = ImputerNumeric(list_cols=list_cols, metric='mean', rank=False, inplace=True)
+>>> X_train = transformer.fit_transform(X_train, y_train)
+>>> X_valid = transformer.transform(X_valid)
+```
