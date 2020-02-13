@@ -21,6 +21,7 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 	<tr>
 		<td>Parameters:</td>
 		<td>threshold_na: <i>float, default=None</i>
+		<td>threshold_na: <i>float, default=None</i>
 	</tr>
 
 </table>
