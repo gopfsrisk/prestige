@@ -38,7 +38,8 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.preprocessing import Binaritizer
 
->>> transformer = Binaritizer(threshold_na=0.5, inplace=False)
+>>> transformer = Binaritizer(threshold_na=0.5, 
+	                          inplace=False)
 >>> X_train = transformer.fit_transform(X_train)
 >>> X_valid = transformer.transform(X_valid)
 ```
@@ -116,7 +117,9 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.preprocessing import ImputerNumeric
 
->>> transformer = ImputerNumeric(list_cols=list_cols, metric='mean', inplace=True)
+>>> transformer = ImputerNumeric(list_cols=list_cols, 
+	                             metric='mean', 
+	                             inplace=True)
 >>> X_train = transformer.fit_transform(X_train)
 >>> X_valid = transformer.transform(X_valid)
 ```
@@ -145,7 +148,8 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.preprocessing import ImputerMode
 
->>> transformer = ImputerMode(list_cols=list_cols, inplace=True)
+>>> transformer = ImputerMode(list_cols=list_cols, 
+	                          inplace=True)
 >>> X_train = transformer.fit_transform(X_train)
 >>> X_valid = transformer.transform(X_valid)
 ```
@@ -177,7 +181,10 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.preprocessing import TargetEncoder
 
->>> transformer = ImputerNumeric(list_cols=list_cols, metric='mean', rank=False, inplace=True)
+>>> transformer = ImputerNumeric(list_cols=list_cols, 
+	                             metric='mean', 
+	                             rank=False, 
+	                             inplace=True)
 >>> X_train = transformer.fit_transform(X_train, y_train)
 >>> X_valid = transformer.transform(X_valid)
 ```
@@ -215,7 +222,9 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.general import agg_one_to_many
 
->>> df_agg = agg_one_to_many(df=df, unique_id='UniqueID', filename='applications.csv')
+>>> df_agg = agg_one_to_many(df=df, 
+	                         unique_id='UniqueID', 
+	                         filename='applications.csv')
 ```
 
 #
@@ -245,6 +254,9 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.general import divide_df
 
->>> df_train, df_valid, df_test = divide_df(df=df, date_col='application_date', thresh_valid_start=thresh_valid_start, thresh_test_start=thresh_test_start)
+>>> df_train, df_valid, df_test = divide_df(df=df, 
+	                                        date_col='application_date', 
+	                                        thresh_valid_start=thresh_valid_start, 
+	                                        thresh_test_start=thresh_test_start)
 ```
 
