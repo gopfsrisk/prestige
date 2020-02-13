@@ -182,6 +182,7 @@ X_train, y_train, X_valid, y_valid = pre.cleanme(list_transformers=list_transfor
 ```
 
 ---
+---
 
 <a name="general"></a><h2>prestige.general</h2>
 
