@@ -6,7 +6,7 @@
 To install, use: ```pip install git+https://github.com/aaronengland/prestige.git```
 
 ---
-<h2>Functions for [preprocessing](#preprocessing) and [general](#purposes).</h2>
+<h2>Functions for <a>preprocessing</a> and <a>general</a> purposes.</h2>
 
 ---
 <a name="preprocessing"></a><h2>prestige.preprocessing</h2>
@@ -185,7 +185,7 @@ X_train, y_train, X_valid, y_valid = pre.cleanme(list_transformers=list_transfor
 
 <a name="general"></a><h2>prestige.general</h2>
 
-<p>Functions for making making code more concise.</p>
+<p>Functions for general purposes and making making code more concise.</p>
 
 #
 
