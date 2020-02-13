@@ -10,6 +10,11 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 
 <p>Tools for data cleaning and preparation.</p>
 
+---
+<h3>prestige.preprocessing.Binaritizer</h3>
+
+<p>class prestige.preprocessing.Binaritizer(threshold_na, inplace=False)</p>
+
 
 
 
