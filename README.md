@@ -17,13 +17,13 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 
 <p>This estimator find the proportion missing of features and converts them to binary if the proportion missing is greater than or equal to <i>threshold_na</i>.</p>
 
-<table>
-	<tr bgcolor="white">
+<table style="background-color:red;">
+	<tr>
 		<td>Parameters:</td>
 		<td>threshold_na: <i>float, default=None</i><BR>
 		    inplace: <i>boolean, default=True</i>
 	</tr>
-	<tr bgcolor="white">
+	<tr>
 		<td>Attributes:</td>
 		<td>list_col: <i>list of features that were transformed</i>
 </table>
