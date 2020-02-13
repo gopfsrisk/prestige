@@ -13,7 +13,7 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ---
 <h3>prestige.preprocessing.Binaritizer</h3>
 
-<p>class prestige.preprocessing.Binaritizer(threshold_na, inplace=False)</p>
+<p><i>class</i> prestige.preprocessing.Binaritizer(<i>threshold_na, inplace=False</i>)</p>
 
 
 
