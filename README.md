@@ -1,4 +1,4 @@
-<p align="center"><img src="prestige_logo.png" alt="Prestige logo" width=50% height=50% /></p>
+<p float="center"><img src="prestige_logo.png" alt="Prestige logo" width=50% height=50% /></p>
 
 ---
 <h1>prestige (version = 2.0)</h1>
@@ -19,13 +19,13 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 
 <table>
 	<tr>
-		<td width=30%>Parameters:</td>
-		<td width=70%>threshold_na: <i>float, default=None</i><BR>
+		<td>Parameters:</td>
+		<td>threshold_na: <i>float, default=None</i><BR>
 		    inplace: <i>boolean, default=True</i>
 	</tr>
 	<tr>
-		<td width=30%>Attributes:</td>
-		<td width=70%>list_col: <i>list of features that were transformed</i>
+		<td>Attributes:</td>
+		<td>list_col: <i>list of features that were transformed</i>
 </table>
 
 
