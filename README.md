@@ -26,9 +26,28 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 	</tr>
 	<tr>
 		<td>Attributes:</td>
-		<td>list_col: <i>list of features that were transformed</i>
+		<td>list_col: <i>list, features that were transformed</i>
 </table>
 
+#
+
+<h3>prestige.preprocessing.ImputerNumeric</h3>
+
+<p><i>class</i> prestige.preprocessing.ImputerNumeric(<i>list_cols, metric='median', inplace=True</i>)</p>
+
+<p>This estimator imputes each feature's 'median' or 'mean' for missing values.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>list_cols: <i>list, default=None</i><BR>
+		    metric: <i>str, default='median'</i><BR>
+		    inplace: <i>boolean, default=True</i>
+	</tr>
+	<tr>
+		<td>Attributes:</td>
+		<td>dict_metric_: <i>dict, features and corresponding metric</i>
+</table>
 
 
 
