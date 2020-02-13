@@ -39,7 +39,7 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 >>> from prestige.preprocessing import Binaritizer
 
 >>> transformer = Binaritizer(threshold_na=0.5, 
-	                          inplace=False)
+                              inplace=False)
 >>> X_train = transformer.fit_transform(X_train)
 >>> X_valid = transformer.transform(X_valid)
 ```
