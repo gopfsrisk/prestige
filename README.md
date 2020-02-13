@@ -59,6 +59,16 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 		<td>dict_metric_: <i>dict, features and corresponding metric</i>
 </table>
 
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.preprocessing import ImputerNumeric
+
+>>> transformer = ImputerNumeric(list_cols=list_cols, metric='mean', inplace=True)
+>>> X_train = transformer.fit_transform(X_train)
+>>> X_valid = transformer.transform(X_valid)
+```
+
 #
 
 <h3>prestige.preprocessing.ImputerMode</h3>
