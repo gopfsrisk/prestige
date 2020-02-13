@@ -29,7 +29,7 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 		<td>list_col: <i>list, features that were transformed</i>
 </table>
 
-<p>Example</p>
+<p><b>Example:</b></p>
 
 ```
 >>> from prestige.preprocessing import Binaritizer
