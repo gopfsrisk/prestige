@@ -68,4 +68,24 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 		<td>dict_mode: <i>dict, features and corresponding mode</i>
 </table>
 
+#
+
+<h3>prestige.preprocessing.TargetEncoder</h3>
+
+<p><i>class</i> prestige.preprocessing.TargetEncoder(<i>list_cols, metric='mean', rank=False, inplace=True</i>)</p>
+
+<p>This estimator converts categorical features into numeric by taking the central tendency metric of the outcome by category.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>list_cols: <i>list, default=None</i><BR>
+			metric: <i>str, default='mean'</i><BR>
+			rank: <i>boolean, default=False</i><BR>
+		    inplace: <i>boolean, default=True</i>
+	</tr>
+	<tr>
+		<td>Attributes:</td>
+		<td>list_dict_: <i>list, categories within each feature end corresponding central tendency metric of the outcome variable.</i>
+</table>
 
