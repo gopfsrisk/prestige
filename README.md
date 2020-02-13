@@ -37,7 +37,7 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 
 <p>This estimator imputes each feature's 'median' or 'mean' for missing values.</p>
 
-<table>
+<table width=100%>
 	<tr>
 		<td>Parameters:</td>
 		<td>list_cols: <i>list, default=None</i><BR>
