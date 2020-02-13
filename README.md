@@ -136,6 +136,8 @@ X_train, y_train, X_valid, y_valid = pre.cleanme(list_transformers=list_transfor
 		<td>dict_mode: <i>dict, features and corresponding mode</i>
 </table>
 
+<p><b>Example:</b></p>
+
 ```
 >>> from prestige.preprocessing import ImputerMode
 
@@ -166,6 +168,8 @@ X_train, y_train, X_valid, y_valid = pre.cleanme(list_transformers=list_transfor
 		<td>list_dict_: <i>list, categories within each feature end corresponding central tendency metric of the outcome variable.</i>
 </table>
 
+<p><b>Example:</b></p>
+
 ```
 >>> from prestige.preprocessing import TargetEncoder
 
@@ -173,3 +177,69 @@ X_train, y_train, X_valid, y_valid = pre.cleanme(list_transformers=list_transfor
 >>> X_train = transformer.fit_transform(X_train, y_train)
 >>> X_valid = transformer.transform(X_valid)
 ```
+
+---
+
+<h2>prestige.general</h2>
+
+<p>Functions for making making code more concise.</p>
+
+#
+
+<h3>prestige.general.agg_one_to_many</h3>
+
+<p><i>function</i> prestige.general.agg_one_to_many(<i>df, unique_id, filename</i>)</p>
+
+<p>This function aggregates by a unique identifier, finds 'min', 'max', 'median', 'mean', 'std', 'sum', and count unique for numeric columns and count unique for non-numeric columns.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>dataframe, default=None</i><BR>
+			unique_id: <i>str, default=None</i><BR>
+			filename: <i>str, default=None</i>
+	</tr>
+	<tr>
+		<td>Attributes:</td>
+		<td>df: <i>dataframe, aggregated dataframe.</i>
+</table>
+
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.general import agg_one_to_many
+
+>>> df_agg = agg_one_to_many(df=df, unique_id='UniqueID', filename='applications.csv')
+```
+
+#
+
+<h3>prestige.general.divide_df</h3>
+
+<p><i>function</i> prestige.general.divide_df(<i>df, date_col, thresh_valid_start, thresh_test_start</i>)</p>
+
+<p>This function splits a dataframe into training, validation, and testing dataframes based on dates.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>dataframe, default=None</i><BR>
+			date_col: <i>str, default=None</i><BR>
+			thresh_valid_start: <i>datetime, default=None</i><BR>
+			thresh_test_start: <i>datetime, default=None</i>
+	</tr>
+	<tr>
+		<td>Attributes:</td>
+		<td>df_train, df_valid, df_test: <i>tuple, dataframes.</i>
+</table>
+
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.general import divide_df
+
+>>> df_train, df_valid, df_test = divide_df(df=df, date_col='application_date', thresh_valid_start=thresh_valid_start, thresh_test_start=thresh_test_start)
+```
+
