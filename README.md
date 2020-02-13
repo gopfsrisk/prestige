@@ -71,24 +71,24 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 <p><b>Example:</b></p>
 
 ```
-import prestige.preprocessing as pre
-from sklearn.metrics import MinMaxScaler
+>>> import prestige.preprocessing as pre
+>>> from sklearn.metrics import MinMaxScaler
 
-# make list_transformers
-list_transformers = [pre.Binaritizer(threshold_na=0.1), # create binary features
-                     pre.ImputerNumeric(list_cols=list_numeric_cols, metric=metric), # impute medians for numeric columns
-                     pre.ImputerMode(list_cols=list_non_numeric_cols), # impute modes for non numeric columns
-                     pre.RemoveNoVar(), # remove features with no variance
-                     pre.TargetEncoder(list_cols=list_non_numeric_cols, metric='mean'), # convert categorical to numeric
-                     pre.ImputerNumeric(list_cols=list_non_numeric_cols, metric=metric) # impute median
-                     MinMaxScaler()] # scale data
+>>> # make list_transformers
+>>> list_transformers = [pre.Binaritizer(threshold_na=0.1), # create binary features
+                     	 pre.ImputerNumeric(list_cols=list_numeric_cols, metric=metric), # impute medians for numeric columns
+                     	 pre.ImputerMode(list_cols=list_non_numeric_cols), # impute modes for non numeric columns
+                     	 pre.RemoveNoVar(), # remove features with no variance
+                     	 pre.TargetEncoder(list_cols=list_non_numeric_cols, metric='mean'), # convert categorical to numeric
+                     	 pre.ImputerNumeric(list_cols=list_non_numeric_cols, metric=metric) # impute median
+                     	 MinMaxScaler()] # scale data
 
-# apply function
-X_train, y_train, X_valid, y_valid = pre.cleanme(list_transformers=list_transformers, 
-                                                 X_train=X_train, 
-                                                 y_train=y_train, 
-                                                 X_test=X_valid, 
-                                                 y_test=y_valid)
+>>> # apply function
+>>> X_train, y_train, X_valid, y_valid = pre.cleanme(list_transformers=list_transformers, 
+                                                 	 X_train=X_train, 
+                                                     y_train=y_train, 
+                                                     X_test=X_valid, 
+                                                     y_test=y_valid)
 ```
 
 #
