@@ -1,4 +1,4 @@
-<img src="prestige_logo.png" alt="Prestige logo" style="float: left; margin-right: 7px;" />
+<img src="prestige_logo.png" alt="Prestige logo" style="float: left; margin-right: 10px;" />
 
 ---
 # prestige (version = 2.0)
