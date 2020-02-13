@@ -85,7 +85,7 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 
 >>> # apply function
 >>> X_train, y_train, X_valid, y_valid = pre.cleanme(list_transformers=list_transformers, 
-                                                 	 X_train=X_train, 
+                                                     X_train=X_train, 
                                                      y_train=y_train, 
                                                      X_test=X_valid, 
                                                      y_test=y_valid)
