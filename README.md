@@ -1,4 +1,4 @@
-<img src="prestige_logo.png" alt="Prestige logo" align="middle" width=50% height=50% />
+<p align="center"><img src="prestige_logo.png" alt="Prestige logo" width=50% height=50% /></p>
 
 ---
 <h1>prestige (version = 2.0)</h1>
