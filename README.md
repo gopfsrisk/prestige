@@ -23,7 +23,9 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 		<td>threshold_na: <i>float, default=None</i><BR>
 		    inplace: <i>boolean, default=True</i>
 	</tr>
-
+	<tr>
+		<td>Attributes:</td>
+		<td>list_col: <i>list of features that were transformed</i>
 </table>
 
 
