@@ -21,6 +21,7 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 	<tr>
 		<td>Parameters:</td>
 		<td>threshold_na: <i>float, default=None</i><BR>
+			<span style="padding-left:20px">Proportion of missing value in a feature in order to convert it to a binary feature (0 = missing, 1 = not missing).<BR>
 		    inplace: <i>boolean, default=True</i>
 	</tr>
 
