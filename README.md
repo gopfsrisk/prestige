@@ -49,6 +49,23 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 		<td>dict_metric_: <i>dict, features and corresponding metric</i>
 </table>
 
+#
 
+<h3>prestige.preprocessing.ImputerMode</h3>
+
+<p><i>class</i> prestige.preprocessing.ImputerMode(<i>list_cols, inplace=True</i>)</p>
+
+<p>This estimator imputes each feature's mode for missing values.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>list_cols: <i>list, default=None</i><BR>
+		    inplace: <i>boolean, default=True</i>
+	</tr>
+	<tr>
+		<td>Attributes:</td>
+		<td>dict_mode: <i>dict, features and corresponding mode</i>
+</table>
 
 
