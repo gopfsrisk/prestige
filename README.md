@@ -38,9 +38,13 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.preprocessing import Binaritizer
 
+>>> # instantiate transformer
 >>> transformer = Binaritizer(threshold_na=0.5, 
                               inplace=False)
+
+>>> # fit transform training data
 >>> X_train = transformer.fit_transform(X_train)
+>>> # transform validation
 >>> X_valid = transformer.transform(X_valid)
 ```
 
@@ -117,10 +121,14 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.preprocessing import ImputerNumeric
 
+>>> # instantiate transformer
 >>> transformer = ImputerNumeric(list_cols=list_cols, 
-	                             metric='mean', 
-	                             inplace=True)
+                                 metric='mean', 
+                                 inplace=True)
+
+>>> # fit transform training data
 >>> X_train = transformer.fit_transform(X_train)
+>>> # transform validation
 >>> X_valid = transformer.transform(X_valid)
 ```
 
@@ -148,9 +156,13 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.preprocessing import ImputerMode
 
+>>> # instantiate transformer
 >>> transformer = ImputerMode(list_cols=list_cols, 
-	                          inplace=True)
+                              inplace=True)
+
+>>> # fit transform training data
 >>> X_train = transformer.fit_transform(X_train)
+>>> # transform validation
 >>> X_valid = transformer.transform(X_valid)
 ```
 
@@ -181,11 +193,15 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.preprocessing import TargetEncoder
 
+>>> # instantiate transformer
 >>> transformer = ImputerNumeric(list_cols=list_cols, 
-	                             metric='mean', 
-	                             rank=False, 
-	                             inplace=True)
+                                 metric='mean', 
+                                 rank=False, 
+                                 inplace=True)
+
+>>> # fit transform training data
 >>> X_train = transformer.fit_transform(X_train, y_train)
+>>> # transform validation
 >>> X_valid = transformer.transform(X_valid)
 ```
 
@@ -222,9 +238,10 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 ```
 >>> from prestige.general import agg_one_to_many
 
+>>> # aggregate df by the categorical column (i.e., 'UniqueID')
 >>> df_agg = agg_one_to_many(df=df, 
-	                         unique_id='UniqueID', 
-	                         filename='applications.csv')
+                             unique_id='UniqueID', 
+                             filename='applications.csv')
 ```
 
 #
@@ -252,11 +269,18 @@ To install, use: ```pip install git+https://github.com/aaronengland/prestige.git
 <p><b>Example:</b></p>
 
 ```
+>>> import datetime
 >>> from prestige.general import divide_df
 
+>>> # save datetime for when validation data starts
+>>> thresh_valid_start = datetime.datetime(year=2016, month=1, day=1)
+>>> # save threshold for when test data starts
+>>> thresh_test_start = datetime.datetime(year=2016, month=7, day=1)
+
+>>> # divide df into training, validation, and testing
 >>> df_train, df_valid, df_test = divide_df(df=df, 
-	                                        date_col='application_date', 
-	                                        thresh_valid_start=thresh_valid_start, 
-	                                        thresh_test_start=thresh_test_start)
+                                            date_col='application_date', 
+                                            thresh_valid_start=thresh_valid_start, 
+                                            thresh_test_start=thresh_test_start)
 ```
 
