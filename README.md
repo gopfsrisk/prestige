@@ -6,7 +6,7 @@
 To install, use: ```pip install git+https://github.com/aaronengland/prestige.git```
 
 ---
-<h2>Functions for <a href="#preprocessing">preprocessing</a> and <a href="#general">general</a> purposes.</h2>
+<h3>Functions for <a href="#preprocessing">preprocessing</a> and <a href="#general">general</a> purposes.</h3>
 
 ---
 <a name="preprocessing"></a><h2>prestige.preprocessing</h2>
