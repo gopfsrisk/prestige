@@ -257,7 +257,7 @@ class SplitterMetric(BaseEstimator, TransformerMixin):
 				metric_ = np.mean(X[col])					
 			list_metric_.append(metric_)
 		# zip into dict
-		self.dict_ = dict(zip(self.list_col, list_metric_))
+		self.dict_ = dict(zip(self.list_cols, list_metric_))
 		return self
 	# transform
 	def transform(self, X):
