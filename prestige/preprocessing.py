@@ -84,12 +84,20 @@ class Categorizer(BaseEstimator, TransformerMixin):
 
 # data cleaning function
 def cleanme(list_transformers, X_train, y_train, X_test, y_test):
-	for transformer in list_transformers:
+	for i, transformer in enumerate(list_transformers):
 		tool = transformer
 		# X_train
 		X_train = tool.fit_transform(X_train, y_train)
 		# X_test
 		X_test = tool.transform(X_test)
+		# calculate metrics
+		n_complete = i + 1
+		# total
+		n_total = len(list_transformers)
+		# % complete
+		pct_complete = (n_complete / n_total) * 100
+		# print message
+		print('{0}/{1} transformations ({2:0.2f}%) complete.'.format(n_complete, n_total, pct_complete))
 	return X_train, y_train, X_test, y_test
 
 # convert to NaN
