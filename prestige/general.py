@@ -564,3 +564,38 @@ def remove_substring_cols(df, list_substr_to_drop, case_sensitive=True):
 	print('{0} columns have been dropped.'.format(len(list_cols_to_drop)))     
 	# return the df
 	return df
+
+# adverse action
+def adverse_action(df_shaps, list_unique_id, list_y_actual, list_y_hat, n_reasons=5, drop_list=True):
+	# function to get top x (5) shap vals
+	def shap_decisions(list_columns, list_shap_vals, n_reasons=n_reasons):
+		# create dictionary
+		dict_ = dict(zip(list_shap_vals, list_columns))
+		# sort dictionary
+		dict_sorted = sorted(dict_.items(), reverse=True)
+		# get n_reasons 
+		reasons = dict_sorted[:n_reasons]
+		# create list of reasons
+		list_reasons = [x[1] for x in reasons]
+		# return list_reasons
+		return list_reasons
+	# get columns for df_shaps
+	list_cols = list(df_shaps.columns)
+	# apply shap_decisions function
+	list_reasons = list(df_shaps.apply(lambda x: shap_decisions(list_columns=list_cols,
+                                                                list_shap_vals=list(x[:]),
+                                                                n_reasons=n_reasons), axis=1))
+    # create df
+	df = pd.DataFrame({'UniqueID': list_unique_id,
+                       'actual': list_y_actual,
+                       'y_hat': list_y_hat,
+                       'reasons': list_reasons})
+    # create separate cols for adverse action
+	for i in range(n_reasons):
+		df['action_{0}'.format(i+1)] = df.apply(lambda x: x['reasons'][i], axis=1)
+	# if drop_list is True
+	if drop_list:
+		# drop reasons
+		df.drop('reasons', axis=1, inplace=True)
+	# return the df
+	return df
