@@ -565,7 +565,7 @@ def remove_substring_cols(df, list_substr_to_drop, case_sensitive=True):
 	# return the df
 	return df
 
-# adverse action
+# adverse action (catboost)
 def adverse_action(df_shaps, list_unique_id, list_y_actual, list_y_hat, n_reasons=5, drop_list=True):
 	# function to get top x (5) shap vals
 	def shap_decisions(list_columns, list_shap_vals, n_reasons=n_reasons):
@@ -598,4 +598,33 @@ def adverse_action(df_shaps, list_unique_id, list_y_actual, list_y_hat, n_reason
 		# drop reasons
 		df.drop('reasons', axis=1, inplace=True)
 	# return the df
+	return df
+
+# adverse action (logistic)
+def logistic_adverse_action(df_scaled_w_cols, list_coefficients, list_unique_id, list_y_actual, list_y_hat, n_reasons=5, drop_list=True):
+	# define function for generating list of reasons
+	def logistic_reasons(row_, n_reasons):
+		# multiply row_ by list_coefficients
+		ser_feat_wt = row_ * list_coefficients
+		# sort descending
+		ser_feat_wt_sorted = ser_feat_wt.sort_values(ascending=False)
+		# get the top n_reasons
+		list_reasons = list(ser_feat_wt_sorted[:n_reasons].index)
+		# return list_reasons
+		return list_reasons
+	# apply function
+	list_reasons = list(df_scaled_w_cols.apply(lambda x: logistic_reasons(row_=x[:], n_reasons=n_reasons), axis=1))
+	# create df
+	df = pd.DataFrame({'UniqueID': list_unique_id,
+					   'actual': list_y_actual,
+					   'y_hat': list_y_hat,
+					   'reasons': list_reasons})
+	# create separate cols for each adverse action
+	for i in range(n_reasons):
+		df['action_{0}'.format(i+1)] = df.apply(lambda x: x['reasons'][i], axis=1)
+	# if drop_list is True
+	if drop_list:
+		# drop reasons
+		df.drop('reasons', axis=1, inplace=True)
+	# return df
 	return df
