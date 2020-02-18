@@ -159,6 +159,35 @@ class Dummytizer(BaseEstimator, TransformerMixin):
 		# return X
 		return X
 
+# create mode imputer
+class ImputerMode(BaseEstimator, TransformerMixin):
+	# initialize class
+	def __init__(self, list_cols, inplace=True):
+		self.list_cols = list_cols
+		self.inplace = inplace
+	# fit to X
+	def fit(self, X, y=None):
+		# make sure all cols in list_cols are in X
+		self.list_cols = [col for col in self.list_cols if col in list(X.columns)]
+		# get the mode for each col
+		list_mode = []
+		for col in self.list_cols:
+			mode_ = pd.value_counts(X[col].dropna()).index[0]
+			# append to list
+			list_mode.append(mode_)
+		# zip into dictionary
+		self.dict_mode = dict(zip(self.list_cols, list_mode))
+		return self
+	# transform X
+	def transform(self, X):
+		if self.inplace:
+			# fill the nas with dict_mode
+			X = X.fillna(value=self.dict_mode, inplace=False)
+		else:
+			for key, val in self.dict_mode.items():
+				X['{0}_imp_mode'.format(key)] = X[key].fillna(value=val, inplace=False)
+		return X
+
 # create median imputer
 class ImputerNumeric(BaseEstimator, TransformerMixin):
 	# initialize class
@@ -195,33 +224,35 @@ class ImputerNumeric(BaseEstimator, TransformerMixin):
 				X['{0}_imp_{1}'.format(key, metric)] = X[key].fillna(value=val, inplace=False)
 		return X
 
-# create mode imputer
-class ImputerMode(BaseEstimator, TransformerMixin):
+# string imputer
+class ImputerString(BaseEstimator, TransformerMixin):
 	# initialize class
-	def __init__(self, list_cols, inplace=True):
+	def __init__(self, list_cols, str_='MISSING', inplace=True):
 		self.list_cols = list_cols
+		self.str_ = str_
 		self.inplace = inplace
 	# fit to X
 	def fit(self, X, y=None):
 		# make sure all cols in list_cols are in X
 		self.list_cols = [col for col in self.list_cols if col in list(X.columns)]
-		# get the mode for each col
-		list_mode = []
+		# get the columns in self.list_cols with missing vals
+		list_cols_has_na = []
+		list_str_ = []
 		for col in self.list_cols:
-			mode_ = pd.value_counts(X[col].dropna()).index[0]
-			# append to list
-			list_mode.append(mode_)
-		# zip into dictionary
-		self.dict_mode = dict(zip(self.list_cols, list_mode))
+			if X[col].isnull().sum() > 0:
+				list_cols_has_na.append(col)
+				list_str_.append(self.str_)
+		# create dictionary
+		self.dict_ = dict(zip(list_cols_has_na, list_str_))
 		return self
-	# transform X
+	# transform
 	def transform(self, X):
 		if self.inplace:
-			# fill the nas with dict_mode
-			X = X.fillna(value=self.dict_mode, inplace=False)
+			# fill the nas with str_
+			X = X.fillna(value=self.dict_, inplace=False)
 		else:
-			for key, val in self.dict_mode.items():
-				X['{0}_imp_mode'.format(key)] = X[key].fillna(value=val, inplace=False)
+			for key, val in self.dict_.items():
+				X['{0}_imp_str'.format(key)] = X[key].fillna(val, inplace=False)
 		return X
 
 # remove no var cols
