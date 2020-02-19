@@ -255,6 +255,40 @@ class ImputerString(BaseEstimator, TransformerMixin):
 				X['{0}_imp_str'.format(key)] = X[key].fillna(val, inplace=False)
 		return X
 
+# numeric categorizer
+class NumericCategories(BaseEstimator, TransformerMixin):
+	# initialize class
+	def __init__(self, list_cols, threshold_len, inplace=True):
+		self.list_cols = list_cols
+		self.threshold_len = threshold_len
+		self.inplace = inplace
+	# fit to X
+	def fit(self, X, y=None):
+		# make sure all cols in list_cols are in X
+		self.list_cols = [col for col in self.list_cols if col in list(X.columns)]
+		# get cols with fewer counts than threshold_len
+		list_cols_low_len = []
+		for col in self.list_cols:
+			# get len of value counts
+			len_val_counts = len(pd.value_counts(X[col]))
+			# logic
+			if len_val_counts <= self.threshold_len:
+				# append to list
+				list_cols_low_len.append(col)
+		# save list_cols_low_len to self
+		self.list_cols_low_len = list_cols_low_len
+		# return self
+		return self
+	# transform
+	def transform(self, X):
+		for col in self.list_cols_low_len:
+			if self.inplace:
+				X[col] = X[col].astype('str')
+			else:
+				X['{0}_num_cat'.format(col)] = X[col].astype('str')
+		# return X
+		return X
+
 # remove no var cols
 class RemoveNoVar(BaseEstimator, TransformerMixin):
 	# intialize class
