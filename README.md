@@ -3,7 +3,7 @@
 ---
 <h1>prestige (version = 2.0)</h1>
 
-To install, use: ```pip install git+https://github.com/aaronengland/prestige.git```
+To install, use: ```pip install git+https://github.com/gopfsrisk/prestige.git```
 
 ---
 <h3>Functions for <a href="#preprocessing">preprocessing</a> and <a href="#general">general</a> purposes.</h3>
