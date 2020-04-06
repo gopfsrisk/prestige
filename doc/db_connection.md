@@ -19,7 +19,7 @@
 
 <p><i>function</i> prestige.db_connection.query_to_df(<i>str_query</i>)</p>
 
-<p>This function takes a SQL string and returns a data frame</p>
+<p>This function takes a SQL string and returns a data frame.</p>
 
 <table>
 	<tr>
