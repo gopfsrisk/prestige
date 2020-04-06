@@ -1,6 +1,6 @@
 <ul>
   <li><a class="active" href="README.md">Home</a></li>
-  <li><a href="doc/db_connection">Database Connection</a></li>
+  <li><a href="doc/db_connection.md">Database Connection</a></li>
   <li><a href="doc/preprocessing.md">Preprocessing</a></li>
   <li><a href="doc/model_eval.md">Model Evaluation</a></li>
   <li><a href="doc/general.md">General</a></li>
