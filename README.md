@@ -1,6 +1,8 @@
 ---
 
-<p><b>Home</b> | Database Connection | Preprocessing | Model Evaluation | General</p>
+<p>
+	<b><a href="README.md">Home</a></b> | Database Connection | Preprocessing | Model Evaluation | General
+</p>
 
 ---
 
