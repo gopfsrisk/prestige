@@ -6,7 +6,7 @@
 To install, use: ```pip install git+https://github.com/gopfsrisk/prestige.git```
 
 ---
-<h3>Functions for [general purposes](general_doc.md), [database connection], [preprocessing](preprocessing_doc.md), and [model evaluation].</h3>
+##Functions for [general purposes](general_doc.md), [database connection], [preprocessing](preprocessing_doc.md), and [model evaluation]
 
 ---
 
