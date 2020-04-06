@@ -1,7 +1,7 @@
 ---
 
 <p>
-	<b><a href="README.md">Home</a></b> | Database Connection | Preprocessing | Model Evaluation | General
+	<b><a href="README.md">Home</a></b> | <a href="doc/db_connection.md">Database Connection</a> | Preprocessing | Model Evaluation | General
 </p>
 
 ---
