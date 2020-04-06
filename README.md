@@ -30,7 +30,7 @@
 
 
 <ul>
-  <li style='color:pink'><a class="active" href="README.md">Home</a></li>
+  <li style="color:pink"><a class="active" href="README.md">Home</a></li>
   <li><a href="doc/db_connection.md">Database Connection</a></li>
   <li><a href="doc/preprocessing.md">Preprocessing</a></li>
   <li><a href="doc/model_eval.md">Model Evaluation</a></li>
