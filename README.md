@@ -18,8 +18,3 @@ To install:
 To upgrade:
 - (windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git -U```
 - (linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git -U```
-
----
-## Functions for [database connection](doc/db_connection.md), [preprocessing](doc/preprocessing.md), [model evaluation](doc/model_eval.md), and [general purposes](doc/general.md).
-
----
