@@ -12,21 +12,21 @@ def roc_auc_curve(y_true, y_hat, figsize=(10,10)):
 	# set up subplots
 	fig, ax = plt.subplots(figsize=figsize)
 	# set title
-    ax.set_title('ROC Plot - (AUC: {0:0.4f})'.format(auc))
+	ax.set_title('ROC Plot - (AUC: {0:0.4f})'.format(auc))
     # set x axis label
-    ax.set_xlabel('False Positive Rate (Sensitivity)')
+	ax.set_xlabel('False Positive Rate (Sensitivity)')
     # set y axis label
-    ax.set_ylabel('False Negative Rate (1 - Specificity)')
+	ax.set_ylabel('False Negative Rate (1 - Specificity)')
     # set x lim
-    ax.set_xlim([0,1])
+	ax.set_xlim([0,1])
     # set y lim
-    ax.set_ylim([0,1])
+	ax.set_ylim([0,1])
     # create curve
-    ax.plot(fpr, tpr, label='Model')
+	ax.plot(fpr, tpr, label='Model')
     # plot diagonal red, dotted line
-    ax.plot([0,1], [0,1], color='red', linestyle=':', label='Chance')
+	ax.plot([0,1], [0,1], color='red', linestyle=':', label='Chance')
     # create legend
-    ax.legend(loc='lower right')
+	ax.legend(loc='lower right')
 	# fix overlap
 	plt.tight_layout()
 	# return fig
