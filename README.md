@@ -1,3 +1,5 @@
+<p>Home</p>
+
 <p align="center"><img src="img/prestige_logo.png" alt="Prestige logo" width=50% height=50% /></p>
 
 ---
