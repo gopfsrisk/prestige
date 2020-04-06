@@ -3,7 +3,7 @@
 ---
 <a name="model evaluation"></a><h2>prestige.model_eval</h2>
 
-<p>Tools for creating ROC AUC plot.</p>
+<p>Tools for evaluating model performance.</p>
 
 #
 
