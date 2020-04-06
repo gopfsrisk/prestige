@@ -1,6 +1,6 @@
 ---
 
-<p>Home | Database Connection | Preprocessing | Model Evaluation | General</p>
+<p><b>Home</b> | Database Connection | Preprocessing | Model Evaluation | General</p>
 
 ---
 
