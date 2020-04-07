@@ -37,9 +37,9 @@
 
 >>> # write query
 >>> str_query = """
->>> SELECT *
->>> FROM <insert table name>
->>> """
+                SELECT *
+                FROM <insert table name>
+                """
 
 >>> # pull data
 >>> df = query_to_df(str_query=str_query)
