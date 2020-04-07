@@ -1,5 +1,3 @@
----
-
 <p align="center">
 	<a href="../README.md">Home</a> | <a href="db_connection.md">Database Connection</a> | <a href="preprocessing.md">Preprocessing</a> | <b><a href="model_eval.md">Model Evaluation</a></b> | <a href="general.md">General</a>
 </p>
@@ -8,7 +6,7 @@
 
 <p align="center"><img src="../img/prestige_logo.png" alt="Prestige logo" width=50% height=50% /></p>
 
----
+#
 
 <p>Tools for evaluating model performance.</p>
 
