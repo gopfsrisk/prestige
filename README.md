@@ -1,6 +1,6 @@
 ---
 
-<p style="text-align:center;"">
+<p align="center">
 	<b><a href="README.md">Home</a></b> | <a href="doc/db_connection.md">Database Connection</a> | <a href="doc/preprocessing.md">Preprocessing</a> | <a href="doc/model_eval.md">Model Evaluation</a> | <a href="doc/general.md">General</a>
 </p>
 
