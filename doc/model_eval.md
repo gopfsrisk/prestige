@@ -40,6 +40,6 @@
 
 >>> # generate plot
 >>> roc_plot = roc_auc_curve(y_true=y_true,
->>>	                     y_hat=y_hat,
->>>	                     figsize=(10,10))
+	                     y_hat=y_hat,
+	                     figsize=(10,10))
 ```
