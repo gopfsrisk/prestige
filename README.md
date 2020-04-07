@@ -10,10 +10,14 @@
 
 <h1>prestige (version = 3.0)</h1>
 
-To install:
+Get pip:
+- (windows) - 
+- (linux) - ```sudo apt install python3-pip```
+
+Install:
 - (windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git```
 - (linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git```
 
-To upgrade:
+Upgrade:
 - (windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git -U```
 - (linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git -U```
