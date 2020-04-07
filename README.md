@@ -11,9 +11,9 @@
 <h1>prestige (version = 3.0)</h1>
 
 Install:
-- (windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git```
-- (linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git```
+- (Windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git```
+- (Linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git```
 
 Upgrade:
-- (windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git -U```
-- (linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git -U```
+- (Windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git -U```
+- (Linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git -U```
