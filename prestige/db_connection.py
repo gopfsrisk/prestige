@@ -1,6 +1,17 @@
 import pyodbc
 import pandas as pd
 
+# def read sql file function
+def read_sql_file(str_file):
+  # open qauery file
+  query = open(str_file, 'r')
+  # read the file
+  str_query = query.read()
+  # close query
+  query.close()
+  # return str_query
+  return str_query
+
 # def get query function
 def query_to_df(str_query, server='electra', database='riskdb'):
     # define Python user-defined exceptions
@@ -10,7 +21,7 @@ def query_to_df(str_query, server='electra', database='riskdb'):
 
     # error to raise if connecting to a non existent db
     class CantFindServerAndOrDatabaseError(Error):
-      """Raised when server/database combination not supported"""
+      """Raised when server/databae combination not supported"""
       pass
 
     try:
