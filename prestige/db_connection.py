@@ -41,8 +41,7 @@ def query_to_df(str_query, server='electra', database='riskdb'):
         print('Successfully connected to medusa: pfsdb')
       else:
         raise CantFindServerAndOrDatabaseError
-    except:
-      CantFindServerAndOrDatabaseError:
+    except CantFindServerAndOrDatabaseError:
       print('Unsupported server/database combination.')
 
     # pull data into df
