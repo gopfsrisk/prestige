@@ -10,7 +10,7 @@ def query_to_df(str_query, server='electra', database='riskdb'):
 
     # error to raise if connecting to a non existent db
     class CantFindServerAndOrDatabaseError(Error):
-      """Raised when server/databae combination not supported"""
+      """Raised when server/database combination not supported"""
       pass
 
     try:
