@@ -15,7 +15,7 @@ def query_to_df(str_query, server='electra', database='riskdb'):
 
     try:
       # logic for different engines
-      if db_engine == 'electra' and database == 'pfsdb':
+      if server == 'electra' and database == 'pfsdb':
         # establish db connection
         cnxn = pyodbc.connect("Driver={SQL Server};"
                               "Server=electra;"
@@ -23,7 +23,7 @@ def query_to_df(str_query, server='electra', database='riskdb'):
                               "Trusted_Connection=yes;")
         # print message
         print('Successfully connected to electra: pfsdb.')
-      elif db_engine == 'electra' and database == 'riskdb':
+      elif server == 'electra' and database == 'riskdb':
         # establish db connection
         cnxn = pyodbc.connect("Driver={SQL Server};"
                               "Server=electra;"
@@ -31,7 +31,7 @@ def query_to_df(str_query, server='electra', database='riskdb'):
                               "Trusted_Connection=yes;")
         # print message
         print('Successfully connected to electra: riskdb')
-      elif db_engine == 'medusa':
+      elif server == 'medusa':
         # establish db connection
         cnxn = pyodbc.connect("Driver={SQL Server};"
                               "Server=medusa;"
