@@ -17,7 +17,7 @@ def query_to_df(str_query, db_engine='electra'):
                             "Database=pfsdb;"
                             "Trusted_Connection=yes;")
     else:
-      print('Selected engine not found. Supported engines include "electra" and "medusa"')
+      print('ERROR! Selected engine not found. Supported engines include "electra" and "medusa"')
     # pull data into df
     df = pd.read_sql_query(str_query, cnxn) 
     # close connection
