@@ -42,7 +42,7 @@ def query_to_df(str_query, server='electra', database='riskdb'):
                               "Trusted_Connection=yes;")
         # print message
         print('Successfully connected to electra: riskdb')
-      elif server == 'medusa':
+      elif server == 'medusa' and database == 'pfsdb':
         # establish db connection
         cnxn = pyodbc.connect("Driver={SQL Server};"
                               "Server=medusa;"
@@ -50,6 +50,14 @@ def query_to_df(str_query, server='electra', database='riskdb'):
                               "Trusted_Connection=yes;")
         # print message
         print('Successfully connected to medusa: pfsdb')
+      elif server == 'medusa' and database == 'riskdb':
+        # establish db connection
+        cnxn = pyodbc.connect("Driver={SQL Server};"
+                              "Server=medusa;"
+                              "Database=riskdb;"
+                              "Trusted_Connection=yes;")
+        # print message
+        print('Successfully connected to medusa: riskdb')
       else:
         raise CantFindServerAndOrDatabaseError
     except CantFindServerAndOrDatabaseError:
