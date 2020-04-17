@@ -23,12 +23,12 @@
 <table>
 	<tr>
 		<td>Parameters:</td>
-		<td>df_X: <i>df, default=None</i></td>
-		<td>n_max_clusters: <i>int, default=None</i></td>
-		<td>tpl_figsize: <i>tpl, default=None</i></td>
-		<td>title_fontsize: <i>int, default=None</i></td>
-		<td>axis_fontsize: <i>int, default=None</i></td>
-		<td>str_figname: <i>str, default=None</i></td>
+		<td>df_X: <i>df, default=None</i></BR>
+		    n_max_clusters: <i>int, default=None</i><BR>
+		    tpl_figsize: <i>tpl, default=None</i><BR>
+		    title_fontsize: <i>int, default=None</i><BR>
+		    axis_fontsize: <i>int, default=None</i><BR>
+		    str_figname: <i>str, default=None</i>
 	</tr>
 </table>
 
