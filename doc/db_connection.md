@@ -1,5 +1,5 @@
 <p align="center">
-	<a href="../README.md">Home</a> | <b><a href="db_connection.md">Database Connection</a></b> | <a href="preprocessing.md">Preprocessing</a> | <a href="model_eval.md">Model Evaluation</a> | <a href="general.md">General</a>
+	<a href="../README.md">Home</a> | <b><a href="db_connection.md">Database Connection</a></b> | <a href="preprocessing.md">Preprocessing</a> | <a href="segmentation.md">Segmentation</a> | <a href="model_eval.md">Model Evaluation</a> | <a href="general.md">General</a>
 </p>
 
 ---
@@ -24,6 +24,8 @@
 	<tr>
 		<td>Parameters:</td>
 		<td>str_query: <i>str, default=None</i>
+			server: <i>str, default=None</i>
+			database: <i>str, default=None</i>
 	</tr>
 	<tr>
 		<td>Attributes:</td>
@@ -42,7 +44,9 @@
                 """
 
 >>> # pull data
->>> df = query_to_df(str_query=str_query)
+>>> df = query_to_df(str_query=str_query
+	                 server=<server_name>,
+	                 database=<database_name>)
 ```
 
 
