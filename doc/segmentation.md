@@ -8,41 +8,42 @@
 
 #
 
-<a name="database connection"></a><h2>prestige.db_connection</h2>
+<a name="segmentation"></a><h2>prestige.segmentation</h2>
 
-<p>Tools for pulling data from a data base into a data frame.</p>
+<p>Tools for segmenting data.</p>
 
 #
 
-<h3>prestige.db_connection.query_to_df</h3>
+<h3>prestige.segmentation.plot_inertia</h3>
 
-<p><i>function</i> prestige.db_connection.query_to_df(<i>str_query</i>)</p>
+<p><i>function</i> prestige.db_connection.plot_inertia(<i>str_query</i>)</p>
 
-<p>This function takes a SQL string and returns a data frame.</p>
+<p>This function takes a scaled data frame, a number of clusters, and returns a plot to determine the best number of clusters.</p>
 
 <table>
 	<tr>
 		<td>Parameters:</td>
-		<td>str_query: <i>str, default=None</i>
+		<td>df_X: <i>df, default=None</i></td>
+		<td>n_max_clusters: <i>int, default=None</i></td>
+		<td>tpl_figsize: <i>tpl, default=None</i></td>
+		<td>title_fontsize: <i>int, default=None</i></td>
+		<td>axis_fontsize: <i>int, default=None</i></td>
+		<td>str_figname: <i>str, default=None</i></td>
 	</tr>
-	<tr>
-		<td>Attributes:</td>
-		<td>df: <i>data frame, data frame with data from SQL query</i>
 </table>
 
 <p><b>Example:</b></p>
 
 ```
->>> from prestige.db_connection import query_to_df
+>>> from prestige.segmentation import plot_inertia
 
->>> # write query
->>> str_query = """
-                SELECT *
-                FROM <insert table name>
-                """
-
->>> # pull data
->>> df = query_to_df(str_query=str_query)
+>>> # generate/save plot
+>>> fig = plot_inertia(df_X=X,
+	                   n_max_clusters=20,
+	                   tpl_figsize=(15,20),
+	                   title_fontsize=20,
+	                   axis_fontsize=15,
+	                   str_figname='inertia_plot')
 ```
 
 
