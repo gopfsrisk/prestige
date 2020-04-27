@@ -16,7 +16,7 @@
 
 <h3>prestige.segmentation.plot_inertia</h3>
 
-<p><i>function</i> prestige.db_connection.plot_inertia(<i>str_query</i>)</p>
+<p><i>function</i> prestige.db_connection.plot_inertia(<i>df_X, n_max_clusters, tpl_figsize, title_fontsize, axis_fontsize, str_figname</i>)</p>
 
 <p>This function takes a scaled data frame, a number of clusters, and returns a plot to determine the best number of clusters.</p>
 

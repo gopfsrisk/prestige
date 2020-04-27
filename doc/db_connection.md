@@ -14,9 +14,36 @@
 
 #
 
+<h3>prestige.db_connection.read_sql_file</h3>
+
+<p><i>function</i> prestige.db_connection.read_sql_file(<i>str_file</i>)</p>
+
+<p>This function takes a SQL file and returns a string of SQL.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>str_file: <i>str, default=None</i>
+	</tr>
+	<tr>
+		<td>Attributes:</td>
+		<td>str_query: <i>string, SQL query</i>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.db_connection import read_sql_file
+
+>>> # import sql string
+>>> str_query = read_sql_file(str_file='sql/query.sql')
+```
+
+---
+
 <h3>prestige.db_connection.query_to_df</h3>
 
-<p><i>function</i> prestige.db_connection.query_to_df(<i>str_query</i>)</p>
+<p><i>function</i> prestige.db_connection.query_to_df(<i>str_query, server, database</i>)</p>
 
 <p>This function takes a SQL string and returns a data frame.</p>
 
