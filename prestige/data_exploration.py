@@ -79,7 +79,16 @@ def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15)
 			ax[row_number, col_number].boxplot(data) 
 		elif plot_type == 'histogram':
 			# generate distplot
-			sns.distplot(data, kde=False, color="b", ax=ax[row_number, col_number])  
+			sns.distplot(data, kde=False, color="b", ax=ax[row_number, col_number])
+		elif plot_type == 'bar':
+			# get frequency table
+			ser_freqtbl = pd.value_counts(data)
+			# convert index values to string so it doesnt auto sort them
+			ser_freqtbl.index = ser_freqtbl.index.map(str)
+			# set title
+			ax[row_number, col_number].set_title(col)
+			# generate bar plot
+			ax[row_number, col_number].bar(ser_freqtbl.index, ser_freqtbl.values)
 	# save figure   
 	fig.savefig(filename, bbox_inches='tight')
 	# return fig
