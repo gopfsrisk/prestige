@@ -49,7 +49,7 @@
 		<td>Parameters:</td>
 		<td>df: <i>df, default=None</i><BR>
 			tpl_figsize: <i>tuple, default=(10,15)</i><BR>
-			filename: <i>str, defaualt=None</i>
+			filename: <i>str, default=None</i>
 	</tr>
 </table>
 
@@ -62,6 +62,36 @@
 >>> sort_ser_propna, fig_na = plot_na(df=df,
                                       tpl_figsize=(10,15),
                                       filename='./img/plt_prop_na.png')
+```
+
+#
+
+<h3>prestige.data_exploration.plot_na_heatmap</h3>
+
+<p><i>function</i> prestige.data_exploration.plot_na_heatmap(<i>df, tpl_figsize, title_fontsize, filename</i>)</p>
+
+<p>This function takes a data frame, a tuple indicating figure size, a title fontsize, and a string filename (for saving the figure) and saves/returns a heatmap showing the occurences (rows) of missing data by column.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i><BR>
+			tpl_figsize: <i>tuple, default=(20,15)</i><BR>
+			title_fontsize: <i>int, default=15</i><BR>
+			filename: <i>str, default=None</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import plot_na_heatmap
+
+>>> # get sorted series of proprtion NaN and generate/save plot
+>>> fig_na_heatmap = plot_na_heatmap(df=df,
+                                     tpl_figsize=(20,15),
+                                     title_fontsize=15,
+                                     filename='./img/fig_na_heatmap.png')
 ```
 
 #
