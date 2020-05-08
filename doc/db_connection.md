@@ -72,8 +72,8 @@
 
 >>> # pull data
 >>> df = query_to_df(str_query=str_query
-	                 server=<server_name>,
-	                 database=<database_name>)
+                     server=<server_name>,
+                     database=<database_name>)
 ```
 
 
