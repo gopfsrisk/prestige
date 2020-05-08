@@ -132,6 +132,40 @@
 
 #
 
+<h3>prestige.data_exploration.descriptives</h3>
+
+<p><i>function</i> prestige.data_exploration.descriptives(<i>df, list_cols, filename</i>)</p>
+
+<p>This function takes a data frame, a list of columns, and a string filename (for saving the figure), and saves/returns a dataframe to a .csv file containing descriptive statistics for each column.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i><BR>
+			list_cols: <i>list, default=None</i><BR>
+			filename: <i>str, default=None</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import descriptives
+
+>>> # get descriptives
+>>> df_descriptives = descriptives(df=df,
+                                   list_cols=list_cols,
+                                   filename='./img/plt_boxplotgrid.png')
+```
+
+
+
+
+
+
+
+
+
 
 
 
