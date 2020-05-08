@@ -13,3 +13,28 @@
 <p>Tools for exploring data.</p>
 
 #
+
+<h3>prestige.data_exploration.n_dup_rows</h3>
+
+<p><i>function</i> prestige.data_exploration.n_dup_rows(<i>df</i>)</p>
+
+<p>This function takes a data frame and returns the number of duplicate rows.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import n_dup_rows
+
+>>> # get number of duplicate rows
+>>> n_dup_rows = n_dup_rows.n_dup_rows(df=df)
+```
+
+#
+
