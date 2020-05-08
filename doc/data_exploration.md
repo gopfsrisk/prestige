@@ -122,10 +122,10 @@
 
 >>> # get plot grid
 >>> fig_plot_grid = plot_grid(df=df,
-		                      list_cols=list_cols,
-		                      int_nrows=6,
-		                      int_ncols=7,
-		                      plot_type='boxplot',
+                              list_cols=list_cols,
+                              int_nrows=6,
+                              int_ncols=7,
+                              plot_type='boxplot',
                               filename='./img/plt_boxplotgrid.png'
                               tpl_figsize=(20,15))
 ```
