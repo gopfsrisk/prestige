@@ -96,7 +96,41 @@
 
 #
 
+<h3>prestige.data_exploration.plot_grid</h3>
 
+<p><i>function</i> prestige.data_exploration.plot_grid(<i>df, list_cols, int_nrows, int_ncols, filename, tpl_figsize, plot_type</i>)</p>
+
+<p>This function takes a data frame, a list of columns, an integer number of rows, an integer number of columns, a string filename (for saving the figure), a tuple indicating figure size, and a string plot type ('boxplot', 'histogram', or 'bar') and saves/returns a grid of desired plot type.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i><BR>
+			list_cols: <i>list, default=None</i><BR>
+			int_nrows: <i>int, default=None</i><BR>
+			int_ncols: <i>int, default=None</i><BR>
+			filename: <i>str, default=None</i><BR>
+			tpl_figsize: <i>tuple, default=(20,15)</i><BR>
+			plot_type: <i>string, default='boxplot'</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import plot_grid
+
+>>> # get sorted series of proprtion NaN and generate/save plot
+>>> fig_plot_grid = plot_grid(df=df,
+		                      list_cols=list_cols,
+		                      int_nrows=6,
+		                      int_ncols=7,
+		                      plot_type='boxplot',
+		                      filename='./img/plt_boxplotgrid.png'
+                              tpl_figsize=(20,15))
+```
+
+#
 
 
 
