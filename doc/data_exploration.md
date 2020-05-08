@@ -87,7 +87,7 @@
 ```
 >>> from prestige.data_exploration import plot_na_heatmap
 
->>> # get sorted series of proprtion NaN and generate/save plot
+>>> # get missing value heatmap
 >>> fig_na_heatmap = plot_na_heatmap(df=df,
                                      tpl_figsize=(20,15),
                                      title_fontsize=15,
@@ -120,7 +120,7 @@
 ```
 >>> from prestige.data_exploration import plot_grid
 
->>> # get sorted series of proprtion NaN and generate/save plot
+>>> # get plot grid
 >>> fig_plot_grid = plot_grid(df=df,
 		                      list_cols=list_cols,
 		                      int_nrows=6,
