@@ -126,7 +126,7 @@
 		                      int_nrows=6,
 		                      int_ncols=7,
 		                      plot_type='boxplot',
-		                      filename='./img/plt_boxplotgrid.png'
+                              filename='./img/plt_boxplotgrid.png'
                               tpl_figsize=(20,15))
 ```
 
