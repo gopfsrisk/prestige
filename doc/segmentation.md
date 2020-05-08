@@ -39,11 +39,11 @@
 
 >>> # generate/save plot
 >>> fig = plot_inertia(df_X=X,
-	                   n_max_clusters=20,
-	                   tpl_figsize=(15,20),
-	                   title_fontsize=20,
-	                   axis_fontsize=15,
-	                   str_figname='inertia_plot')
+                       n_max_clusters=20,
+                       tpl_figsize=(15,20),
+                       title_fontsize=20,
+                       axis_fontsize=15,
+                       str_figname='inertia_plot')
 ```
 
 
