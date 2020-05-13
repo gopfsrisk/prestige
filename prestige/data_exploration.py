@@ -3,7 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import math
-from scipy.stats import skew, kurtosis, shapiro
+from scipy.stats import skew, kurtosis, shapiro, pearsonr
+
 
 # check for duplicate rows
 def n_dup_rows(df):
@@ -175,8 +176,10 @@ def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', t
 		ax[i,0].set_title(col)
 		# no transformation
 		ax[i,0].scatter(df[col], list_y)
+		# pearson
+		corr_0 = pearsonr(df[col], list_y)[0]
 		# set title
-		ax[i,1].set_title(f'{col} Squared')
+		ax[i,1].set_title(f'{col} Squared (r = {corr_0:0.3})')
 		# squared
 		ax[i,1].scatter(df[col]**2, list_y)
 		# set title
