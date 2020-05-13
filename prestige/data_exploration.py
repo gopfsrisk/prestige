@@ -211,7 +211,7 @@ def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', t
 		data = np.log(df[col])
 		data.replace([np.nan, np.inf, -np.inf], 0, inplace=True) # replace nan and inf with 0
 		corr = pearsonr(data, list_y)[0] # pearson
-		ax[i,6].set_title(f'{col} Natural Log (r = {corr:0.3}') # title
+		ax[i,6].set_title(f'{col} Natural Log (r = {corr:0.3})') # title
 		ax[i,6].scatter(data, list_y) # plot
 	# save plot
 	fig.savefig(str_filename, bbox_inches='tight')
