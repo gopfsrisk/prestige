@@ -172,36 +172,34 @@ def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', t
 	plt.tight_layout()
 	# iterate through each col doing 6 transformations for each
 	for i, col in enumerate(list_cols):
-		# set title
-		ax[i,0].set_title(col)
 		# no transformation
-		ax[i,0].scatter(df[col], list_y)
-		# pearson
-		corr_0 = pearsonr(df[col], list_y)[0]
-		# set title
-		ax[i,1].set_title(f'{col} Squared (r = {corr_0:0.3})')
+		corr_0 = pearsonr(df[col], list_y)[0] # pearson
+		ax[i,0].set_title(f'{col} (r = {corr_0:0.3})') # title
+		ax[i,0].scatter(df[col], list_y) # plot
 		# squared
-		ax[i,1].scatter(df[col]**2, list_y)
-		# set title
-		ax[i,2].set_title(f'{col} Cubed')
+		corr_1 = pearsonr(df[col]**2, list_y)[0] # pearson
+		ax[i,1] = set_title(f'{col} Squared (r = {corr_1:0.3})') # title
+		ax[i,1].scatter(df[col]**2, list_y) # plot
 		# cubed
-		ax[i,2].scatter(df[col]**3, list_y)
-		# set title
-		ax[i,3].set_title(f'{col} Square Root')
+		corr_2 = pearsonr(df[col]**3, list_y)[0] # pearson
+		ax[i,2].set_title(f'{col} Cubed (r = {corr_2:0.3})') # title
+		ax[i,2].scatter(df[col]**3, list_y) # plot
 		# square root
-		ax[i,3].scatter(df[col]**(1/2), list_y)
-		# set title
-		ax[i,4].set_title(f'{col} Cube Root')
+		corr_3 = pearsonr(df[col]**(1/2), list_y)[0] # pearson
+		ax[i,3].set_title(f'{col} Square Root (r = {corr_3:0.3})') # title
+		ax[i,3].scatter(df[col]**(1/2), list_y) # plot
 		# cube root
-		ax[i,4].scatter(df[col]**(1/3), list_y)
-		# set title
-		ax[i,5].set_title(f'{col} Log')
+		corr_4 = pearsonr(df[col]**(1/3), list_y)[0] # pearson
+		ax[i,4].set_title(f'{col} Cube Root (r = {corr_4:0.3})') # title
+		ax[i,4].scatter(df[col]**(1/3), list_y) # plot
 		# log
-		ax[i,5].scatter(np.log10(df[col]), list_y)
-		# set title
-		ax[i,6].set_title(f'{col} Natural Log')
+		corr_5 = pearsonr(np.log10(df[col]), list_y)[0] # pearson
+		ax[i,5].set_title(f'{col} Log (r = {corr_5:0.3})') # title
+		ax[i,5].scatter(np.log10(df[col]), list_y) # plot
 		# natural log
-		ax[i,6].scatter(np.log(df[col]), list_y)
+		corr_6 = pearsonr(np.log(df[col]), list_y)[0] # pearson
+		ax[i,6].set_title(f'{col} Natural Log (r = {corr_6:0.3}') # title
+		ax[i,6].scatter(np.log(df[col]), list_y) # plot
 	# save plot
 	fig.savefig(str_filename, bbox_inches='tight')
 	# return fig
