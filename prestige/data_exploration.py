@@ -178,7 +178,7 @@ def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', t
 		ax[i,0].scatter(df[col], list_y) # plot
 		# squared
 		corr_1 = pearsonr(df[col]**2, list_y)[0] # pearson
-		ax[i,1] = set_title(f'{col} Squared (r = {corr_1:0.3})') # title
+		ax[i,1].set_title(f'{col} Squared (r = {corr_1:0.3})') # title
 		ax[i,1].scatter(df[col]**2, list_y) # plot
 		# cubed
 		corr_2 = pearsonr(df[col]**3, list_y)[0] # pearson
