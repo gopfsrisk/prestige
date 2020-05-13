@@ -162,3 +162,44 @@ def descriptives(df, list_cols, filename):
 	df_empty.to_csv(filename, index=True)
 	# return df_empty
 	return df_empty
+
+# define function for transformation plot grid
+def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', tpl_figsize=(20,20)):
+	# create axis
+	fig, ax = plt.subplots(nrows=len(list_cols), ncols=7, figsize=tpl_figsize)
+	# fix any plot overlap
+	plt.tight_layout()
+	# iterate through each col doing 6 transformations for each
+	for i, col in enumerate(list_cols):
+		# set title
+		ax[i,0].set_title(col)
+		# no transformation
+		ax[i,0].scatter(df[col], list_y)
+		# set title
+		ax[i,1].set_title(f'{col} Squared')
+		# squared
+		ax[i,1].scatter(df[col]**2, list_y)
+		# set title
+		ax[i,2].set_title(f'{col} Cubed')
+		# cubed
+		ax[i,2].scatter(df[col]**3, list_y)
+		# set title
+		ax[i,3].set_title(f'{col} Square Root')
+		# square root
+		ax[i,3].scatter(df[col]**(1/2), list_y)
+		# set title
+		ax[i,4].set_title(f'{col} Cube Root')
+		# cube root
+		ax[i,4].scatter(df[col]**(1/3), list_y)
+		# set title
+		ax[i,5].set_title(f'{col} Log')
+		# log
+		ax[i,5].scatter(np.log10(df[col]), list_y)
+		# set title
+		ax[i,6].set_title(f'{col} Natural Log')
+		# natural log
+		ax[i,6].scatter(np.log(df[col]), list_y)
+	# save plot
+	fig.savefig(str_filename, bbox_inches='tight')
+	# return fig
+	return fig
