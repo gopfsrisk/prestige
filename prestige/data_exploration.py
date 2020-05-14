@@ -5,7 +5,6 @@ import seaborn as sns
 import math
 from scipy.stats import skew, kurtosis, shapiro, pearsonr
 
-
 # check for duplicate rows
 def n_dup_rows(df):
 	# get n rows in df
@@ -217,3 +216,133 @@ def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', t
 	fig.savefig(str_filename, bbox_inches='tight')
 	# return fig
 	return fig
+
+# define functions for correlation matrix
+def correlation_matrix(df, list_cols, bool_abs=False):
+	# instantiate empty df
+	df_empty = pd.DataFrame()
+	# iterate through each column twice
+	for col_1 in list_cols:
+		list_empty = []
+		for col_2 in list_cols:
+			# check correlation
+			if bool_abs:
+				corr = np.abs(pearsonr(df[col_1], df[col_2])[0])
+			else:
+				corr = pearsonr(df[col_1], df[col_2])[0]
+			# append to list
+			list_empty.append(corr)
+		# append list_empty to df_empty
+		df_empty[col_1] = list_empty
+	# set index
+	df_empty.index = list_cols
+	# return df_empty
+	return df_empty
+
+# define function for getting the best transformation
+def df_best_trans(df, list_cols, list_y, str_id_col, threshold_r=0.5):
+	# create empty df
+	df_empty = pd.DataFrame(columns=['none', 'squared', 'cubed', 'square_root', 'cube_root', 
+	                                 'log', 'natural_log', 'max_abs_val','max_abs_key'])
+	# get the best transformation for each feature
+	for col in list_cols:
+		# insantiate empty list
+		dict_empty = {}
+		# no transformation
+		data = df[col] # get data
+		data.replace([np.nan, np.inf, -np.inf], 0, inplace=True) # replace nan and inf with 0
+		corr = pearsonr(data, list_y)[0] # pearson
+		dict_empty.update({'none': corr}) # append to dict
+		# squared
+		data = df[col]**2 # get data
+		data.replace([np.nan, np.inf, -np.inf], 0, inplace=True) # replace nan and inf with 0
+		corr = pearsonr(data, list_y)[0] # pearson
+		dict_empty.update({'squared': corr}) # append to dict
+		# cubed
+		data = df[col]**3 # get data
+		data.replace([np.nan, np.inf, -np.inf], 0, inplace=True) # replace nan and inf with 0
+		corr = pearsonr(data, list_y)[0] # pearson
+		dict_empty.update({'cubed': corr}) # append to dict
+		# square root
+		data = df[col]**(1/2) # get data
+		data.replace([np.nan, np.inf, -np.inf], 0, inplace=True) # replace nan and inf with 0
+		corr = pearsonr(data, list_y)[0] # pearson
+		dict_empty.update({'square_root': corr}) # append to dict
+		# cube root
+		data = df[col]**(1/3) # get data
+		data.replace([np.nan, np.inf, -np.inf], 0, inplace=True) # replace nan and inf with 0
+		corr = pearsonr(data, list_y)[0] # pearson
+		dict_empty.update({'cube_root': corr}) # append to dict
+		# log
+		data = np.log10(df[col]) # get data
+		data.replace([np.nan, np.inf, -np.inf], 0, inplace=True) # replace nan and inf with 0
+		corr = pearsonr(data, list_y)[0] # pearson
+		dict_empty.update({'log': corr}) # append to dict
+		# natural log
+		data = np.log(df[col]) # get data
+		data.replace([np.nan, np.inf, -np.inf], 0, inplace=True) # replace nan and inf with 0
+		corr = pearsonr(data, list_y)[0] # pearson
+		dict_empty.update({'natural_log': corr}) # append to dict
+		# find maximum absolute value of values in dict_empty
+		max_abs_val = max([np.abs(val) for val in dict_empty.values()])
+		# find key of max absolute val
+		max_abs_key = max(dict_empty, key=lambda x: abs(dict_empty[x]))
+		# update dict_empty
+		dict_empty.update({'max_abs_val': max_abs_val})
+		dict_empty.update({'max_abs_key': max_abs_key})
+		# append dict_empty as row to df_empty
+		df_empty = df_empty.append(dict_empty, ignore_index=True)
+    
+	# set index of df_empty
+	df_empty.index = list_cols
+
+	# subset df_empty to those with max r >= threshold_r
+	df_empty_sub = df_empty[df_empty['max_abs_val'] >= threshold_r]
+
+	# create a dictionary with col name and max abs corr
+	dict_col_corr = dict(zip(df_empty_sub.index, df_empty_sub['max_abs_val']))
+	# create a dictionary with col name and best transformation
+	dict_col_tran = dict(zip(df_empty_sub.index, df_empty_sub['max_abs_key']))
+
+	# create a new df with the transformed feats
+	df_empty = pd.DataFrame()
+	# iterate through index of df_empty_sub
+	for i, col in enumerate(df_empty_sub.index):
+		# get data
+		data = df[col]
+		# get best transformation
+		best_trans = df_empty_sub['max_abs_key'].iloc[i]
+		# logic for transformation
+		if best_trans == 'none':
+			df_empty[col] = data
+		elif best_trans == 'squared':
+			data = data**2
+			data.replace([np.nan, np.inf, -np.inf], 0, inplace=True)
+			df_empty[f'{col}_squ'] = data
+		elif best_trans == 'cubed':
+			data = data**3
+			data.replace([np.nan, np.inf, -np.inf], 0, inplace=True)
+			df_empty[f'{col}_cub'] = data
+		elif best_trans == 'square_root':
+			data = data**(1/2)
+			data.replace([np.nan, np.inf, -np.inf], 0, inplace=True)
+			df_empty[f'{col}_sqrt'] = data
+		elif best_trans == 'cube_root':
+			data = data**(1/3)
+			data.replace([np.nan, np.inf, -np.inf], 0, inplace=True)
+			df_empty[f'{col}_cbrt'] = data
+		elif best_trans == 'log':
+			data = np.log10(data)
+			data.replace([np.nan, np.inf, -np.inf], 0, inplace=True)
+			df_empty[f'{col}_log'] = data
+		elif best_trans == 'natural_log':
+			data = np.log(data)
+			data.replace([np.nan, np.inf, -np.inf], 0, inplace=True)
+			df_empty[f'{col}_ln'] = data
+        
+	# set index
+	df_empty.index = df[str_id_col]
+	# add profitability column
+	df_empty['profitability'] = list_y
+	# return
+	return dict_col_corr, dict_col_tran, df_empty
