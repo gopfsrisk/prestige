@@ -26,6 +26,12 @@ class OLSRegression:
 		return self
 	# generate predictions
 	def predict(self, X):
+		# if fit_intercept == True
+		if self.fit_intercept:
+			# generate array of ones
+			arr_ones = np.array(np.ones(X.shape[0]))
+			# add as col to X
+			X.insert(loc=0, column='intercept', value=arr_ones)
 		# multiply each cell by its beta
 		list_predictions = list(X.dot(pd.Series(self.dict_col_betas)))
 		# save to class
