@@ -314,7 +314,7 @@ def df_best_trans(df, list_cols, list_y, str_id_col, threshold_r=0.5):
 		best_trans = df_empty_sub['max_abs_key'].iloc[i]
 		# logic for transformation
 		if best_trans == 'none':
-			df_empty[col] = data
+			df_empty[f'{col}_none'] = data
 		elif best_trans == 'squared':
 			data = data**2
 			data.replace([np.nan, np.inf, -np.inf], 0, inplace=True)
