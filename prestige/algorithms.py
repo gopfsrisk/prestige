@@ -27,7 +27,7 @@ class OLSRegression:
 	# generate predictions
 	def predict(self, X):
 		# if fit_intercept == True
-		if self.fit_intercept:
+		if (self.fit_intercept) and ('intercept' not in list(X.columns)):
 			# generate array of ones
 			arr_ones = np.array(np.ones(X.shape[0]))
 			# add as col to X
