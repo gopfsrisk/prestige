@@ -31,6 +31,6 @@ def plot_inertia(df_X, n_max_clusters, tpl_figsize, title_fontsize, axis_fontsiz
 	# xticks
 	ax.set_xticks(list(np.arange(1, n_max_clusters+1)))
 	# save figures
-	plt.savefig(f'{str_figname}.png', bbox_inches='tight')
+	plt.savefig(f'{str_figname}', bbox_inches='tight')
 	# return fig
 	return fig
