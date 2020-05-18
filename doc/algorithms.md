@@ -39,7 +39,7 @@
 
 >>> # fit to training data
 >>> model.fit(X=X_train,
-	          y=y_train)
+              y=y_train)
 
 >>> # get a dictionary of beta coefficients
 >>> dict_col_betas = model.dict_col_betas
