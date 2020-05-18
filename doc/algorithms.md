@@ -51,4 +51,42 @@
 >>> dict_eval_metrics = model.evaluate(y=y_test)
 ```
 
+#
+
+<h3>prestige.segmentation.ols_kfold_valid</h3>
+
+<p><i>function</i> prestige.algorithms.ols_kfold_valid(<i>X, y, int_random_state, int_k_folds, flt_test_size, bool_fit_intercept, str_metric</i>)</p>
+
+<p>This class takes an X data frame, y array, random state value, k-folds value, test size proportion, fit intercept boolean, and a metric and completes k-fold OLS regression using train/test split with an average of the provided metric.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>X: <i>df, default=None</i>
+			y: <i>arr, default=None</i>
+			int_random_state: <i>int, default=42</i>
+			int_k_folds: <i>int, default=10</i>
+			flt_test_size: <i>flt, default=0.33</i>
+			bool_fit_intercept: <i>bool, default=True</i>
+			str_metric: <i>str, default='r2'</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.algorithms import ols_kfold_valid
+
+>>> # find mean r-squared using 10 fold cross-validation
+>>> mean_eval_metric = ols_kfold_valid(X=X,
+                                       y=y,
+                                       int_random_state=42,
+                                       int_k_folds=10,
+                                       flt_test_size=0.33,
+                                       bool_fit_intercept=True,
+                                       str_metric='r2')
+```
+
+
+
 
