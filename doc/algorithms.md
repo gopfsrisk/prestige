@@ -23,7 +23,7 @@
 <table>
 	<tr>
 		<td>Parameters:</td>
-		<td>fit_intercept: <i>bool, default=True</i>
+		<td>fit_intercept: <i>bool, default=True</i></BR>
 			X: <i>df, default=None</i></BR>
 		    y: <i>arr, default=None</i>
 	</tr>
@@ -62,12 +62,12 @@
 <table>
 	<tr>
 		<td>Parameters:</td>
-		<td>X: <i>df, default=None</i>
-			y: <i>arr, default=None</i>
-			int_random_state: <i>int, default=42</i>
-			int_k_folds: <i>int, default=10</i>
-			flt_test_size: <i>flt, default=0.33</i>
-			bool_fit_intercept: <i>bool, default=True</i>
+		<td>X: <i>df, default=None</i></BR>
+			y: <i>arr, default=None</i></BR>
+			int_random_state: <i>int, default=42</i></BR>
+			int_k_folds: <i>int, default=10</i></BR>
+			flt_test_size: <i>flt, default=0.33</i></BR>
+			bool_fit_intercept: <i>bool, default=True</i></BR>
 			str_metric: <i>str, default='r2'</i>
 	</tr>
 </table>
