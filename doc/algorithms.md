@@ -8,42 +8,47 @@
 
 #
 
-<a name="segmentation"></a><h2>prestige.segmentation</h2>
+<a name="segmentation"></a><h2>prestige.algorithms</h2>
 
-<p>Tools for segmenting data.</p>
+<p>Tools for modeling.</p>
 
 #
 
-<h3>prestige.segmentation.plot_inertia</h3>
+<h3>prestige.segmentation.OLSRegression</h3>
 
-<p><i>function</i> prestige.db_connection.plot_inertia(<i>df_X, n_max_clusters, tpl_figsize, title_fontsize, axis_fontsize, str_figname</i>)</p>
+<p><i>class</i> prestige.algorithms.OLSRegression(<i>fit_intercept</i>)</p>
 
-<p>This function takes a scaled data frame, a number of clusters, and returns a plot to determine the best number of clusters.</p>
+<p>This class takes an X data frame and y array and completes Ordinary Least Squares (OLS) regression.</p>
 
 <table>
 	<tr>
 		<td>Parameters:</td>
-		<td>df_X: <i>df, default=None</i></BR>
-		    n_max_clusters: <i>int, default=None</i><BR>
-		    tpl_figsize: <i>tpl, default=None</i><BR>
-		    title_fontsize: <i>int, default=None</i><BR>
-		    axis_fontsize: <i>int, default=None</i><BR>
-		    str_figname: <i>str, default=None</i>
+		<td>fit_intercept: <i>bool, default=True</i>
+			X: <i>df, default=None</i></BR>
+		    y: <i>arr, default=None</i>
 	</tr>
 </table>
 
 <p><b>Example:</b></p>
 
 ```
->>> from prestige.segmentation import plot_inertia
+>>> from prestige.algorithms import OLSRegression
 
->>> # generate/save plot
->>> fig = plot_inertia(df_X=X,
-                       n_max_clusters=20,
-                       tpl_figsize=(15,20),
-                       title_fontsize=20,
-                       axis_fontsize=15,
-                       str_figname='inertia_plot')
+>>> # instantiate model
+>>> model = OLSRegression(fit_intercept=True)
+
+>>> # fit to training data
+>>> model.fit(X=X_train,
+	          y=y_train)
+
+>>> # get a dictionary of beta coefficients
+>>> dict_col_betas = model.dict_col_betas
+
+>>> # generate predictions on test data
+>>> list_predictions = model.predict(X=X_test)
+
+>>> # generate dictionary of model eval metrics
+>>> dict_eval_metrics = model.evaluate(y=y_test)
 ```
 
 
