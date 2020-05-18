@@ -52,3 +52,30 @@ class OLSRegression:
 		dict_eval_metrics = {'mae': mae, 'mse': mse, 'rmse': rmse, 'r2': r2}
 		# return dict_eval_metrics
 		return dict_eval_metrics
+
+# ols k-fold cross validation
+def ols_kfold_valid(X, y, int_random_state=42, int_k_folds=10, flt_test_size=0.33, bool_fit_intercept=True, str_metric='r2'):
+    list_eval_metric = []
+    for i in range(int_k_folds):
+        # add 1 to random_state
+        int_random_state += 3
+        # split X, y into training, testing
+        X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                            test_size=flt_test_size, 
+                                                            random_state=int_random_state)
+        # instantiate model
+        model = OLSRegression(fit_intercept=bool_fit_intercept)
+        # fit to training
+        model.fit(X=X_train, y=y_train)
+        # predict on testing
+        model.predict(X_test)
+        # evaluate on testing
+        dict_eval_metrics = model.evaluate(y=y_test)
+        # get the metric
+        eval_metric = dict_eval_metrics.get(str_metric)
+        # append to list
+        list_eval_metric.append(eval_metric)
+    # calculate mean r2
+    mean_eval_metric = np.mean(list_eval_metric)
+    # return mean_eval_metric
+    return mean_eval_metric
