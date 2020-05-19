@@ -14,7 +14,7 @@
 
 #
 
-<h3>prestige.segmentation.OLSRegression</h3>
+<h3>prestige.algorithms.OLSRegression</h3>
 
 <p><i>class</i> prestige.algorithms.OLSRegression(<i>fit_intercept</i>)</p>
 
@@ -53,7 +53,7 @@
 
 #
 
-<h3>prestige.segmentation.ols_kfold_valid</h3>
+<h3>prestige.algorithms.ols_kfold_valid</h3>
 
 <p><i>function</i> prestige.algorithms.ols_kfold_valid(<i>X, y, int_random_state, int_k_folds, flt_test_size, bool_fit_intercept, str_metric</i>)</p>
 
