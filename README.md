@@ -10,10 +10,15 @@
 
 <h1>prestige (version = 4.0)</h1>
 
-Install:
+Install via pip:
 - (Windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git```
 - (Linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git```
 
-Upgrade:
+Upgrade via pip:
 - (Windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git -U```
 - (Linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git -U```
+
+Install from Github:
+- ```git clone https://github.com/gopfsrisk/prestige```
+- ```cd prestige```
+- ```python setup.py install```
