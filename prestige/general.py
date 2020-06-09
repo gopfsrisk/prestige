@@ -10,14 +10,14 @@ import matplotlib.pyplot as plt
 import math
 
 # write list to text file
-def list_to_text(list_items, str_filename):
+def list_to_text(list_items, str_filename, int_rowlength=10):
     with open(str_filename, 'w') as file_handler:
         # iterate though each item in list
         for i, item in enumerate(list_items):
             # add 1 to i to make things easier
             i += 1
             # if i is divisible by n_cols and we aren't on the last item
-            if (i % 10 == 0) and (i < len(list_items)):
+            if (i % int_rowlength == 0) and (i < len(list_items)):
                 # start a new line
                 file_handler.write(f"'{item}',\n")
             # if we are at the end of the list
