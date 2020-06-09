@@ -57,20 +57,20 @@ def plot_na_overall(df, filename, tpl_figsize=(10,15)):
 def plot_na_col(df, filename, tpl_figsize=(10,15), flt_thresh_na=0.05):
 	# get the proportion na
 	ser_propna = df.isnull().sum()/df.shape[0]
-	# subset to threshold
-	ser_propna = ser_propna[ser_propna >= flt_thresh_na]
 	# sort it
 	sort_ser_propna = ser_propna.sort_values(ascending=True)
+	# subset to threshold
+	ser_propna_sub = ser_propna[ser_propna >= flt_thresh_na]
 	# set up axis for plot
 	fig, ax = plt.subplots(figsize=tpl_figsize)
 	# set title
 	ax.set_title('Proportion NaN by column')
 	# plot
-	ax.barh(sort_ser_propna.index, sort_ser_propna.values)
+	ax.barh(ser_propna_sub.index, ser_propna_sub.values)
 	# save fig
 	plt.savefig(filename, bbox_inches='tight')
 	# return sort_ser_propna and fig
-	return sort_ser_propna, fig
+	return ser_propna_sub, fig
 
 # NaN heatmap
 def plot_na_heatmap(df, filename, tpl_figsize=(20,15), title_fontsize=15):
@@ -84,6 +84,9 @@ def plot_na_heatmap(df, filename, tpl_figsize=(20,15), title_fontsize=15):
 	plt.savefig(filename, bbox_inches='tight')
 	# return fig
 	return fig
+
+# frequency plot of data types
+
 
 # generate grid of plots
 def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15), plot_type='boxplot'):
