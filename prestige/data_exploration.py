@@ -5,6 +5,15 @@ import seaborn as sns
 import math
 from scipy.stats import skew, kurtosis, shapiro, pearsonr
 
+# get shape of df
+def get_shape(df):
+	n_rows, n_cols = df.shape
+	# print message
+	print(f'Rows: {n_rows}')
+	print(f'Columns: {n_cols}')
+	# return n_rows and n_cols
+	return n_rows, n_cols
+
 # check for duplicate rows
 def n_dup_rows(df):
 	# get n rows in df
