@@ -31,6 +31,28 @@ def n_dup_rows(df):
 	# return n_duprows
 	return n_duprows
 
+# pie chart of proportion NaN values
+def plot_na_overall(df, filename, tpl_figsize=(10,15)):
+	# get total number missing
+	n_missing = np.sum(df.isnull().sum())
+	# get total observations
+	n_observations = df.shape[0] * df.shape[1]
+	# both into a list
+	list_values = [n_missing, n_observations]
+	# create axis
+	fig, ax = plt.subplots(figsize=tpl_figsize)
+	# title
+	ax.set_title('Pie Chart of Missing Values')
+	ax.pie(x=[n_missing, n_observations], 
+	       colors=['y', 'c'],
+	       explode=(0, 0.1),
+	       labels=['Missing', 'Non-Missing'], 
+	       autopct='%1.1f%%')
+	# save fig
+	plt.savefig(filename, bbox_inches='tight')
+	# return fig
+	return fig
+
 # check for proportion missing in each col
 def plot_na(df, filename, tpl_figsize=(10,15)):
 	# get the proportion na
