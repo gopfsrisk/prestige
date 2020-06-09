@@ -54,9 +54,11 @@ def plot_na_overall(df, filename, tpl_figsize=(10,15)):
 	return fig
 
 # check for proportion missing in each col
-def plot_na(df, filename, tpl_figsize=(10,15)):
+def plot_na(df, filename, tpl_figsize=(10,15), flt_thresh_na=0.05):
 	# get the proportion na
 	ser_propna = df.isnull().sum()/df.shape[0]
+	# subset to threshold
+	ser_propna = ser_propna[ser_propna >= flt_thresh_na]
 	# sort it
 	sort_ser_propna = ser_propna.sort_values(ascending=True)
 	# set up axis for plot
