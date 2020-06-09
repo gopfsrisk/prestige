@@ -106,7 +106,7 @@ def plot_dtypes_freq(df, filename, tpl_figsize=(10,15)):
 	n_non_numeric = len(list_non_numeric)
 
 	# create axis
-	fig, ax = plt.subplots()
+	fig, ax = plt.subplots(figsize=tpl_figsize)
 	# set title
 	ax.set_title('Frequency of Numeric and Non-Numeric Features')
 	# set x label
