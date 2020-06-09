@@ -60,7 +60,7 @@ def plot_na_col(df, filename, tpl_figsize=(10,15), flt_thresh_na=0.05):
 	# sort it
 	sort_ser_propna = ser_propna.sort_values(ascending=True)
 	# subset to threshold
-	ser_propna_sub = ser_propna[ser_propna >= flt_thresh_na]
+	ser_propna_sub = sort_ser_propna[sort_ser_propna >= flt_thresh_na]
 	# set up axis for plot
 	fig, ax = plt.subplots(figsize=tpl_figsize)
 	# set title
