@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from pandas.api.types import is_numeric_dtype
 import seaborn as sns
 import math
 from scipy.stats import skew, kurtosis, shapiro, pearsonr
@@ -86,7 +87,39 @@ def plot_na_heatmap(df, filename, tpl_figsize=(20,15), title_fontsize=15):
 	return fig
 
 # frequency plot of data types
+def plot_dtypes_freq(df, filename, tpl_figsize=(10,15)):
+	# instantiate empty lists
+	list_numeric = []
+	list_non_numeric = []
+	# iterate through each col
+	for col in df.columns:
+	    # if its numeric
+	    if is_numeric_dtype(df[col]):
+	        # append to list
+	        list_numeric.append(col)
+	    # if its non-numeric
+	    else:
+	        # append to list
+	        list_non_numeric.append(col)
+	# get n of each list
+	n_numeric = len(list_numeric)
+	n_non_numeric = len(list_non_numeric)
 
+	# create axis
+	fig, ax = plt.subplots()
+	# set title
+	ax.set_title('Frequency of Numeric and Non-Numeric Features')
+	# set x label
+	ax.set_xlabel('Data Type')
+	# set y label
+	ax.set_ylabel('Frequency')
+	# generate plot
+	ax.bar(x=['Numeric','Non-Numeric'],
+	       height=[n_numeric, n_non_numeric])
+	# save fig
+	plt.savefig(filename, bbox_inches='tight')
+	# return fig
+	return list_numeric, list_non_numeric, fig
 
 # generate grid of plots
 def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15), plot_type='boxplot'):
