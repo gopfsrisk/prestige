@@ -19,7 +19,7 @@ def list_to_text(list_items, str_filename):
             # if i is divisible by n_cols and we aren't on the last item
             if (i % 10 == 0) and (i < len(list_items)):
                 # start a new line
-                file_handler.write(f"'{item},'\n")
+                file_handler.write(f"'{item}',\n")
             # if we are at the end of the list
             elif i == (len(list_items)):
                 # write the final item with no comma
