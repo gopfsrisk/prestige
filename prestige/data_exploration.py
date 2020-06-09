@@ -54,7 +54,7 @@ def plot_na_overall(df, filename, tpl_figsize=(10,15)):
 	return fig
 
 # check for proportion missing in each col
-def plot_na(df, filename, tpl_figsize=(10,15), flt_thresh_na=0.05):
+def plot_na_col(df, filename, tpl_figsize=(10,15), flt_thresh_na=0.05):
 	# get the proportion na
 	ser_propna = df.isnull().sum()/df.shape[0]
 	# subset to threshold
