@@ -9,6 +9,25 @@ import catboost as cb
 import matplotlib.pyplot as plt
 import math
 
+# write list to text file
+def list_to_text(list_items, str_filename):
+    with open(str_filename, 'w') as file_handler:
+        # iterate though each item in list
+        for i, item in enumerate(list_items):
+            # add 1 to i to make things easier
+            i += 1
+            # if i is divisible by n_cols and we aren't on the last item
+            if (i % 10 == 0) and (i < len(list_items)):
+                # start a new line
+                file_handler.write(f'{item},\n')
+            # if we are at the end of the list
+            elif i == (len(list_items)):
+                # write the final item with no comma
+                file_handler.write(f'{item}')
+            # write item with comma and space
+            else:
+                file_handler.write(f'{item}, ')
+
 # get dv and corresponding date
 def dv_and_date(filepath, DV, date_col, dv_filename, dv_delimiter, list_dv_usecols, unique_id, date_filename, date_delimiter, list_date_usecols):
     # change wd to get DV and date_col

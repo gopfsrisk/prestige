@@ -87,7 +87,7 @@ def plot_na_heatmap(df, filename, tpl_figsize=(20,15), title_fontsize=15):
 	return fig
 
 # frequency plot of data types
-def plot_dtypes_freq(df, filename, tpl_figsize=(10,15)):
+def plot_dtypes_freq(df, filename, tpl_figsize=(15,10)):
 	# instantiate empty lists
 	list_numeric = []
 	list_non_numeric = []
