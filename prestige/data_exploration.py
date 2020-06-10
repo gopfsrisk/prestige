@@ -224,8 +224,7 @@ def descriptives(df, list_cols, str_filename):
 	# iterate through list_cols
 	for i, col in enumerate(list_cols):
 		# apply get_metrics function
-		tpl_metrics = get_metrics(df=df,
-			                      ser_col=df[col])
+		tpl_metrics = get_metrics(ser_col=df[col])
 		# print message
 		print(f'Descriptives calculated for {i+1}/{len(list_cols)}')
 		# zip into dictionary
