@@ -164,7 +164,7 @@ def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15)
 	return fig
 
 # define a function to get metrics (this function will be used in descriptives function)
-def get_metrics(series_):
+def get_metrics(df, series_):
 	# extract array
 	ser_col = df[series_]
 	# get count
@@ -226,7 +226,8 @@ def descriptives(df, list_cols, str_filename):
 	# iterate through list_cols
 	for i, col in enumerate(list_cols):
 		# apply get_metrics function
-		tpl_metrics = get_metrics(df[col])
+		tpl_metrics = get_metrics(df=df,
+			                      series_=df[col])
 		# print message
 		print(f'Descriptives calculated for {i+1}/{len(list_cols)}')
 		# zip into dictionary
