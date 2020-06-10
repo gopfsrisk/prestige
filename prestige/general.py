@@ -9,6 +9,23 @@ import catboost as cb
 import matplotlib.pyplot as plt
 import math
 
+# define function to get numeric and non-numeric cols
+def get_numeric_and_nonnumeric(df, list_ignore_cols):
+    # instantiate empty lists
+    list_numeric = []
+    list_non_numeric = []
+    # iterate through columns
+    for col in df.columns:
+        # if its numeric
+        if (is_numeric_dtype(df[col])) and (col not in list_ignore_cols):
+            # append to list_numeric
+            list_numeric.append(col)
+        elif (is_numeric_dtype(df[col])==False) and (col not in list_ignore_cols):
+            # append to list_non_numeric
+            list_non_numeric.append(col)
+    # return both lists
+    return list_numeric, list_non_numeric
+
 # write list to text file
 def list_to_text(list_items, str_filename, int_rowlength=10):
     with open(str_filename, 'w') as file_handler:
