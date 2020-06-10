@@ -32,6 +32,19 @@ def n_dup_rows(df):
 	# return n_duprows
 	return n_duprows
 
+# define function to identify and drop features if they are all nan
+def drop_prop_nan(df, flt_thresh_na=1.0):
+	# get proportion missing by col
+	ser_propna = df.isnull().sum()/df.shape[0]
+	# get cols >= flt_thresh_na na
+	list_propna_drop = list(ser_propna[ser_propna >= flt_thresh_na].index)
+	# get cols < flt_thresh_na na
+	list_propna_keep = list(ser_propna[ser_propna < flt_thresh_na].index)
+	# drop ser_propna_drop
+	df.drop(list_propna_drop, axis=1, inplace=True)
+	# return lists and df
+	return list_propna_drop, list_propna_keep, df
+
 # pie chart of proportion NaN values
 def plot_na_overall(df, filename, tpl_figsize=(10,15)):
 	# get total number missing
