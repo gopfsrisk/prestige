@@ -163,70 +163,76 @@ def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15)
 	# return fig
 	return fig
 
+# define a function to get metrics (this function will be used in descriptives function)
+def get_metrics(series_):
+	# extract array
+	ser_col = df[series_]
+	# get count
+	count = len(ser_col)
+	# get proportion NaN
+	prop_na = np.sum(ser_col.apply(lambda x: 1 if pd.isnull(x) else 0))/count
+	# get proportion inf/-inf
+	prop_inf = np.sum(ser_col.apply(lambda x: 1 if math.isinf(x) else 0))/count
+	# drop all inf and -inf values
+	ser_col = ser_col.replace(to_replace=[np.inf, -np.inf], value=np.nan).dropna()
+	# get min
+	min_ = np.nanmin(ser_col)
+	# get max
+	max_ = np.nanmax(ser_col)
+	# get range
+	range_ = max_ - min_
+	# get mean
+	mean_ = np.nanmean(ser_col)
+	# get median
+	median_ = np.nanmedian(ser_col)
+	# get st_dev
+	st_dev = np.nanstd(ser_col)
+	# get variance
+	var_ = np.nanvar(ser_col)
+	# get skewness
+	skewness_ = skew(ser_col)
+	# get skewness interpretation
+	if skewness_ > 1:
+		skewness_interp = 'right skewed'
+	elif skewness_ < -1:
+		skewness_interp = 'left skewed'
+	else:
+		skewness_interp = 'not skewed'
+	# get kurtosis
+	kurtosis_ = kurtosis(ser_col)
+	# get kurtosis interpretation
+	if kurtosis_ > 1:
+		kurtosis_interp = 'too peaked'
+	elif kurtosis_ < -1:
+		kurtosis_interp = 'too flat'
+	else:
+		kurtosis_interp = 'not too peaked or too flat'
+	# shapiro wilk p-val
+	shapiro_pval = shapiro(ser_col)[1]
+	# shapiro p_val interpretation
+	if shapiro_pval < 0.5:
+		shapiro_interp = 'Not normal'
+	else:
+		shapiro_interp = 'Normal'
+	# return the metrics in a tuple
+	return count, prop_na, prop_inf, min_, max_, range_, mean_, median_, st_dev, var_, skewness_, skewness_interp, kurtosis_, kurtosis_interp, shapiro_pval, shapiro_interp
+
 # create descriptive statistics function
 def descriptives(df, list_cols, str_filename):
-	# put list cols into df
-	df_cols = pd.DataFrame({'feature': list_cols})
-	# define function to get our metrics
-	def get_metrics(series_):
-		# extract array
-		ser_col = df[series_]
-		# get count
-		count = len(ser_col)
-		# get proportion NaN
-		prop_na = np.sum(ser_col.apply(lambda x: 1 if pd.isnull(x) else 0))/count
-		# get proportion inf/-inf
-		prop_inf = np.sum(ser_col.apply(lambda x: 1 if math.isinf(x) else 0))/count
-		# drop all inf and -inf values
-		ser_col = ser_col.replace(to_replace=[np.inf, -np.inf], value=np.nan).dropna()
-		# get min
-		min_ = np.nanmin(ser_col)
-		# get max
-		max_ = np.nanmax(ser_col)
-		# get range
-		range_ = max_ - min_
-		# get mean
-		mean_ = np.nanmean(ser_col)
-		# get median
-		median_ = np.nanmedian(ser_col)
-		# get st_dev
-		st_dev = np.nanstd(ser_col)
-		# get variance
-		var_ = np.nanvar(ser_col)
-		# get skewness
-		skewness_ = skew(ser_col)
-		# get skewness interpretation
-		if skewness_ > 1:
-			skewness_interp = 'right skewed'
-		elif skewness_ < -1:
-			skewness_interp = 'left skewed'
-		else:
-			skewness_interp = 'not skewed'
-		# get kurtosis
-		kurtosis_ = kurtosis(ser_col)
-		# get kurtosis interpretation
-		if kurtosis_ > 1:
-			kurtosis_interp = 'too peaked'
-		elif kurtosis_ < -1:
-			kurtosis_interp = 'too flat'
-		else:
-			kurtosis_interp = 'not too peaked or too flat'
-		# shapiro wilk p-val
-		shapiro_pval = shapiro(ser_col)[1]
-		# shapiro p_val interpretation
-		if shapiro_pval < 0.5:
-			shapiro_interp = 'Not normal'
-		else:
-			shapiro_interp = 'Normal'
-		# return the metrics in a tuple
-		return count, prop_na, prop_inf, min_, max_, range_, mean_, median_, st_dev, var_, skewness_, skewness_interp, kurtosis_, kurtosis_interp, shapiro_pval, shapiro_interp
-	# apply function, make it into a list, and then a df
-	df_metrics = pd.DataFrame(list(df_cols.apply(lambda x: get_metrics(series_=x['feature']), axis=1)))
-	# assign col names
-	df_metrics.columns = ['count','prop_na','prop_inf','min','max', 'range',
-	                      'mean','median','st_dev','variance','skewness',
-	                      'skewness_interp','kurtosis','kurtosis_interp',
-	                      'shapiro_pval','shapiro_interp']
+	# create list of columns
+	list_col_names = ['count','prop_na','prop_inf','min','max', 'range','mean','median','st_dev','variance','skewness','skewness_interp','kurtosis','kurtosis_interp','shapiro_pval','shapiro_interp']
+	# create empty df
+	df_empty = pd.DataFrame(columns=list_col_names)
+	# iterate through list_cols
+	for i, col in enumerate(list_cols):
+		# apply get_metrics function
+		tpl_metrics = get_metrics(df[col])
+		# print message
+		print(f'Descriptives calculated for {i+1}/{len(list_cols)}')
+		# zip into dictionary
+		dict_row = dict(zip(list_col_names, tpl_metrics))
+		# append row to df_empty
+		df_empty = df_empty.append(dict_row, ignore_index=True)
 	# assign list_cols as index
 	df_metrics.index = list_cols
 	# write to csv
