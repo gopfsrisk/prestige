@@ -45,6 +45,27 @@ def drop_prop_nan(df, flt_thresh_na=1.0):
 	# return lists and df
 	return list_propna_drop, list_propna_keep, df
 
+# define function to identify and drop features if they have no variance
+def drop_no_variance(df):
+	# instantiate empty list
+	list_no_var = []
+	# iterate through columns in df
+	for col in df.columns:
+		# get the series
+		series_ = df[col]
+		# drop na
+		series_.dropna(inplace=True)
+		# get count unique
+		int_count_unique = series_.nunique()
+		# if int_count_unique == 1
+		if int_count_unique == 1:
+			# append to list
+			list_no_var.append(col)
+	# drop list_no_var
+	df.drop(list_no_var, axis=1, inplace=True)
+	# return list and df
+	return list_no_var, df
+
 # pie chart of proportion NaN values
 def plot_na_overall(df, filename, tpl_figsize=(10,15)):
 	# get total number missing
