@@ -232,11 +232,11 @@ def descriptives(df, list_cols, str_filename):
 		# append row to df_empty
 		df_empty = df_empty.append(dict_row, ignore_index=True)
 	# assign list_cols as index
-	df_metrics.index = list_cols
+	df_empty.index = list_cols
 	# write to csv
-	df_metrics.to_csv(str_filename, index=True)
+	df_empty.to_csv(str_filename, index=True)
 	# return df_metrics
-	return df_metrics
+	return df_empty
 
 # define function for transformation plot grid
 def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', tpl_figsize=(20,20)):
