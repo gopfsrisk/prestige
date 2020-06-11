@@ -33,6 +33,10 @@ def list_to_text(list_items, str_filename, int_rowlength=10):
         for i, item in enumerate(list_items):
             # add 1 to i to make things easier
             i += 1
+            # if i == 1
+            if i == 1
+                # add open bracket
+                file_handler.write(f"['{item}', ")
             # if i is divisible by n_cols and we aren't on the last item
             if (i % int_rowlength == 0) and (i < len(list_items)):
                 # start a new line
@@ -40,7 +44,7 @@ def list_to_text(list_items, str_filename, int_rowlength=10):
             # if we are at the end of the list
             elif i == (len(list_items)):
                 # write the final item with no comma
-                file_handler.write(f"'{item}'")
+                file_handler.write(f"'{item}']")
             # write item with comma and space
             else:
                 file_handler.write(f"'{item}', ")

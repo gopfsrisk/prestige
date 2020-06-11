@@ -8,7 +8,7 @@
 
 #
 
-<h1>prestige (version = 4.0.4)</h1>
+<h1>prestige (version = 4.0.5)</h1>
 
 Install from Github via pip:
 - (Windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git```
