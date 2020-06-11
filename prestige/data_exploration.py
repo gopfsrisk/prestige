@@ -192,6 +192,10 @@ def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15)
 			ax[row_number, col_number].set_title(col)
 			# generate bar plot
 			ax[row_number, col_number].bar(ser_freqtbl.index, ser_freqtbl.values)
+			# rotate x ticks
+			plt.xticks(rotation=45)
+	# prevent overlap
+	plt.tight_layout()
 	# save figure   
 	fig.savefig(filename, bbox_inches='tight')
 	# return fig
@@ -321,6 +325,8 @@ def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', t
 		corr = pearsonr(data, list_y)[0] # pearson
 		ax[i,6].set_title(f'{col} Natural Log (r = {corr:0.3})') # title
 		ax[i,6].scatter(data, list_y) # plot
+	# prevent overlap
+	plt.tight_layout()
 	# save plot
 	fig.savefig(str_filename, bbox_inches='tight')
 	# return fig

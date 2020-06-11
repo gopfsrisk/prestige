@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='prestige',
-      version='4.0.5',
+      version='4.0.6',
       description='Functions to use for data science.',
       url='http://github.com/gopfsrisk/prestige',
       author='Aaron England',
