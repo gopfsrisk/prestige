@@ -85,6 +85,8 @@ def plot_na_overall(df, filename, tpl_figsize=(10,15)):
 	       autopct='%1.1f%%')
 	# save fig
 	plt.savefig(filename, bbox_inches='tight')
+	# close plot
+	plt.close()
 	# return fig
 	return fig
 
@@ -104,6 +106,8 @@ def plot_na_col(df, filename, tpl_figsize=(10,15), flt_thresh_na=0.05):
 	ax.barh(ser_propna_sub.index, ser_propna_sub.values)
 	# save fig
 	plt.savefig(filename, bbox_inches='tight')
+	# close plot
+	plt.close()
 	# return sort_ser_propna and fig
 	return ser_propna_sub, fig
 
@@ -117,6 +121,8 @@ def plot_na_heatmap(df, filename, tpl_figsize=(20,15), title_fontsize=15):
 	sns.heatmap(df.isnull(), yticklabels=False, cbar=False, cmap='viridis', ax=ax)
 	# save fig
 	plt.savefig(filename, bbox_inches='tight')
+	# close plot
+	plt.close()
 	# return fig
 	return fig
 
@@ -152,6 +158,8 @@ def plot_dtypes_freq(df, filename, tpl_figsize=(15,10)):
 	       height=[n_numeric, n_non_numeric])
 	# save fig
 	plt.savefig(filename, bbox_inches='tight')
+	# close plot
+	plt.close()
 	# return fig
 	return list_numeric, list_non_numeric, fig
 
@@ -198,6 +206,8 @@ def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15)
 	plt.tight_layout()
 	# save figure   
 	fig.savefig(filename, bbox_inches='tight')
+	# close plot
+	plt.close()
 	# return fig
 	return fig
 
@@ -329,6 +339,8 @@ def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', t
 	plt.tight_layout()
 	# save plot
 	fig.savefig(str_filename, bbox_inches='tight')
+	# close plot
+	plt.close()
 	# return fig
 	return fig
 
