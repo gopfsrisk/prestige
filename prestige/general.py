@@ -34,7 +34,7 @@ def list_to_text(list_items, str_filename, int_rowlength=10):
             # add 1 to i to make things easier
             i += 1
             # if i == 1
-            if i == 1
+            if i == 1:
                 # add open bracket
                 file_handler.write(f"['{item}', ")
             # if i is divisible by n_cols and we aren't on the last item
