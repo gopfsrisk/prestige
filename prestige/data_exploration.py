@@ -127,20 +127,19 @@ def plot_na_heatmap(df, filename, tpl_figsize=(20,15), title_fontsize=15):
 	return fig
 
 # frequency plot of data types
-def plot_dtypes_freq(df, filename, tpl_figsize=(15,10)):
+def plot_dtypes_freq(df, filename, list_ignore_cols, tpl_figsize=(15,10)):
 	# instantiate empty lists
-	list_numeric = []
-	list_non_numeric = []
-	# iterate through each col
-	for col in df.columns:
-	    # if its numeric
-	    if is_numeric_dtype(df[col]):
-	        # append to list
-	        list_numeric.append(col)
-	    # if its non-numeric
-	    else:
-	        # append to list
-	        list_non_numeric.append(col)
+    list_numeric = []
+    list_non_numeric = []
+    # iterate through columns
+    for col in df.columns:
+        # if its numeric
+        if (is_numeric_dtype(df[col])) and (col not in list_ignore_cols):
+            # append to list_numeric
+            list_numeric.append(col)
+        elif (is_numeric_dtype(df[col])==False) and (col not in list_ignore_cols):
+            # append to list_non_numeric
+            list_non_numeric.append(col)
 	# get n of each list
 	n_numeric = len(list_numeric)
 	n_non_numeric = len(list_non_numeric)
