@@ -199,8 +199,10 @@ def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15)
 			ax[row_number, col_number].set_title(col)
 			# generate bar plot
 			ax[row_number, col_number].bar(ser_freqtbl.index, ser_freqtbl.values)
-			# rotate x ticks
-			plt.xticks(rotation=45)
+			# set xticks
+			ax[row_number, col_number].set_xticks(ser_freqtbl.index)
+			# rotate xticks 45 degrees
+			ax[row_number, col_number].tick_params(labelrotation=45)
 	# prevent overlap
 	plt.tight_layout()
 	# save figure   
