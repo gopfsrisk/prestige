@@ -285,6 +285,72 @@ def descriptives(df, list_cols, str_filename):
 	# return df_metrics
 	return df_empty
 
+# define function for distribution analysis
+def distribution_analysis(df, str_datecol, list_numeric_cols, str_filename, int_length=100):
+	# extend list numeric to include the date column
+	list_numeric_cols.append(str_datecol)
+	# subset df to the list
+	df_sub = df[list_numeric_cols]
+	# create year column name
+	str_name_year = f'{str_datecol}_year'
+	# create month column name
+	str_name_month = f'{str_datecol}_month'
+	# extract year
+	df_sub[str_name_year] = df_sub[str_datecol].dt.year
+	# extract month
+	df_sub[str_name_month] = df_sub[str_datecol].dt.month
+	# group by year and month to get mean
+	df_grouped_mean = df_sub.groupby(by=[str_name_year, str_name_month]).mean()
+	# get sd
+	df_grouped_sd = df_sub.groupby(by=[str_name_year, str_name_month]).std()
+	# edit future x axis
+	list_x = [f'{int(x[0])}-{int(x[1])}' for x in df_grouped_mean.index]
+	# if len(list_numeric_cols) > int_length
+	if len(list_numeric_cols) > int_length:
+		# create list of lists because we will be making a plot for each lit
+		list_of_lists = []
+		list_new = []
+		for i, col in enumerate(list_numeric_cols):
+			# add 1 to i
+			i += 1
+			# append col to list-new
+			list_new.append(col)
+			# if len(list_new) == int_length
+			if (len(list_new) == int_length) or (i == len(list_numeric_cols)):
+				# append list_new to list_of_lists
+				list_of_lists.append(list_new)
+				# clear list_new
+				list_new = []
+	# if len(list_numeric_cols) >= int_length
+	else:
+		list_of_lists = [list_numeric_cols]
+	# iterate through each list
+	for i, list_ in enumerate(list_of_lists):
+		# create grid axis
+		fig, ax = plt.subplots(nrows=len(list_), figsize=(10, 5*len(list_)))
+		# iterate through each item in the list
+		for j, col in enumerate(list_):
+			# create title
+			ax[j].set_title(f'Mean {col} by Month')
+			# plot it
+			ax[j].errorbar(x=list_x,
+			               y=df_grouped_mean[col],
+			               yerr=df_grouped_sd[col])
+			# set xticks
+			ax[j].set_xticks(list_x)
+			# rotate xticks 45 degrees
+			ax[j].tick_params(labelrotation=45)
+		# fix overlap
+		plt.tight_layout()
+		# parse str_filename
+		str_filename_new = str_filename[:-4] + f'_{i+1}' + str_filename[-4:]
+		# save figure
+		plt.savefig(str_filename_new, bbox_inches='tight')
+		# close plot
+		plt.close()
+		# print message
+		print(f'List {i+1}/{len(list_of_lists)} successfully generated and saved.')
+
 # define function for transformation plot grid
 def trans_plot_grid(df, list_cols, list_y, str_filename='./img/plt_trans.png', tpl_figsize=(20,20)):
 	# create axis
