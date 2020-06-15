@@ -295,6 +295,8 @@ def distribution_analysis(df, str_datecol, list_numeric_cols, str_filename, int_
 	list_numeric_cols.append(str_datecol)
 	# subset df to the list
 	df_sub = df[list_numeric_cols]
+	# remove str_datecol
+	list_numeric_cols = [x for x in list_numeric_cols if x != str_datecol]
 	# create year column name
 	str_name_year = f'{str_datecol}_year'
 	# create month column name
