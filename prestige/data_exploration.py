@@ -305,25 +305,20 @@ def distribution_analysis(df, str_datecol, list_numeric_cols, str_filename, int_
 	df_grouped_sd = df_sub.groupby(by=[str_name_year, str_name_month]).std()
 	# edit future x axis
 	list_x = [f'{int(x[0])}-{int(x[1])}' for x in df_grouped_mean.index]
-	# if len(list_numeric_cols) > int_length
-	if len(list_numeric_cols) > int_length:
-		# create list of lists because we will be making a plot for each lit
-		list_of_lists = []
-		list_new = []
-		for i, col in enumerate(list_numeric_cols):
-			# add 1 to i
-			i += 1
-			# append col to list-new
-			list_new.append(col)
-			# if len(list_new) == int_length
-			if (len(list_new) == int_length) or (i == len(list_numeric_cols)):
-				# append list_new to list_of_lists
-				list_of_lists.append(list_new)
-				# clear list_new
-				list_new = []
-	# if len(list_numeric_cols) >= int_length
-	else:
-		list_of_lists = [list_numeric_cols]
+	# create list of lists because we will be making a plot for each lit
+	list_of_lists = []
+	list_new = []
+	for i, col in enumerate(list_numeric_cols):
+		# add 1 to i
+		i += 1
+		# append col to list-new
+		list_new.append(col)
+		# if len(list_new) == int_length
+		if (len(list_new) == int_length) or (i == len(list_numeric_cols)):
+			# append list_new to list_of_lists
+			list_of_lists.append(list_new)
+			# clear list_new
+			list_new = []
 	# iterate through each list
 	for i, list_ in enumerate(list_of_lists):
 		# create grid axis
