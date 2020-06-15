@@ -5,6 +5,8 @@ from pandas.api.types import is_numeric_dtype
 import seaborn as sns
 import math
 from scipy.stats import skew, kurtosis, shapiro, pearsonr
+# suppress settingwithcopywarning
+pd.options.mode.chained_assignment = None
 
 # get shape of df
 def get_shape(df):
