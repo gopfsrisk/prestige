@@ -8,6 +8,12 @@ import random
 import catboost as cb
 import matplotlib.pyplot as plt
 import math
+import json
+
+# write dictionary to text
+def dict_to_text(dict_, str_filename):
+    with open(str_filename, 'w') as file:
+        file.write(json.dumps(dict_))
 
 # define function to get numeric and non-numeric cols
 def get_numeric_and_nonnumeric(df, list_ignore_cols):
