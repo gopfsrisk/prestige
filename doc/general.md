@@ -72,3 +72,34 @@
 	                                                        list_ignore_cols=['col1','col2'])
 ```
 
+#
+
+<h3>prestige.general.list_to_text</h3>
+
+<p><i>function</i> prestige.general.list_to_text(<i>list_items, str_filename, int_rowlength</i>)</p>
+
+<p>This function writes a list to a text file with line breaks at provided row lengths.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>list_items: <i>list, default=None</i><BR>
+			str_filename: <i>str, default=None</i><BR>
+			int_rowlength: <i>int, defualt=10</i>
+	</tr>
+</table>
+
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.general import list_to_text
+
+>>> # create list
+>>> list_ = [1, 2, 3, 4]
+
+>>> # write list to text file
+>>> list_to_text(list_items=list_, 
+                 str_filename='list_.txt',
+                 int_rowlength=2)
+```
