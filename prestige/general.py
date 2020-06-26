@@ -20,6 +20,9 @@ def dict_to_text(dict_, str_filename):
 
 # define function to get numeric and non-numeric cols
 def get_numeric_and_nonnumeric(df, list_ignore_cols):
+    """
+    Takes a data frame and finds the numeric and non-numeric columns while ignoring provided columns.
+    """
     # instantiate empty lists
     list_numeric = []
     list_non_numeric = []
