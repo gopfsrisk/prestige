@@ -322,10 +322,10 @@
 
 >>> # conduct distribution analysis
 >>> distribution_analysis(df=df,
-                      str_datecol='date_col',
-                      list_numeric_cols=['col1','col2'],
-                      str_filename='plt_dist.png',
-                      int_length=100)
+                          str_datecol='date_col',
+                          list_numeric_cols=['col1','col2'],
+                          str_filename='plt_dist.png',
+                          int_length=100)
 ```
 
 
