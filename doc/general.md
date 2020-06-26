@@ -14,34 +14,32 @@
 
 #
 
-<h3>prestige.general.agg_one_to_many</h3>
+<h3>prestige.general.dict_to_text</h3>
 
-<p><i>function</i> prestige.general.agg_one_to_many(<i>df, unique_id, filename</i>)</p>
+<p><i>function</i> prestige.general.dict_to_text(<i>dict_, str_filename</i>)</p>
 
-<p>This function aggregates by a unique identifier, finds 'min', 'max', 'median', 'mean', 'std', 'sum', and count unique for numeric columns and count unique for non-numeric columns.</p>
+<p>This function writes a dictionary to a text file.</p>
 
 <table>
 	<tr>
 		<td>Parameters:</td>
-		<td>df: <i>dataframe, default=None</i><BR>
-			unique_id: <i>str, default=None</i><BR>
-			filename: <i>str, default=None</i>
+		<td>dict_: <i>dictionary, default=None</i><BR>
+			str_filename: <i>str, default=None</i>
 	</tr>
-	<tr>
-		<td>Attributes:</td>
-		<td>df: <i>dataframe, aggregated dataframe.</i>
 </table>
 
 
 <p><b>Example:</b></p>
 
 ```
->>> from prestige.general import agg_one_to_many
+>>> from prestige.general import dict_to_text
 
->>> # aggregate df by the categorical column (i.e., 'UniqueID')
->>> df_agg = agg_one_to_many(df=df, 
-                             unique_id='UniqueID', 
-                             filename='applications.csv')
+>>> # create dictionary
+>>> dict_ = {'key': value}
+
+>>> # write dictionary to text file
+>>> df_agg = dict_to_text(dict_=dict_, 
+                          str_filename='dict_.txt')
 ```
 
 #
