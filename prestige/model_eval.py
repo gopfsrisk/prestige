@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import roc_auc_score, roc_curve
 
 # function for ROC curves
-def roc_auc_curve(y_true, y_hat, figsize=(10,10)):
+def roc_auc_curve(y_true, y_hat, tpl_figsize=(10,10)):
 	# get roc auc
 	auc = roc_auc_score(y_true=y_true,
 		                y_score=y_hat)
@@ -10,7 +10,7 @@ def roc_auc_curve(y_true, y_hat, figsize=(10,10)):
 	fpr, tpr, thresholds = roc_curve(y_true=y_true, 
 		                             y_score=y_hat)
 	# set up subplots
-	fig, ax = plt.subplots(figsize=figsize)
+	fig, ax = plt.subplots(figsize=tpl_figsize)
 	# set title
 	ax.set_title('ROC Plot - (AUC: {0:0.4f})'.format(auc))
     # set x axis label

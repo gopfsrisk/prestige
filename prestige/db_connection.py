@@ -3,6 +3,9 @@ import pandas as pd
 
 # def read sql file function
 def read_sql_file(str_file):
+  """
+  Takes a SQL file and returns a string of SQL.
+  """
   # open qauery file
   query = open(str_file, 'r')
   # read the file
@@ -14,6 +17,9 @@ def read_sql_file(str_file):
 
 # def get query function
 def query_to_df(str_query, server='electra', database='riskdb'):
+    """
+    Takes a SQL string and returns a data frame.
+    """
     # define Python user-defined exceptions
     class Error(Exception):
       """Base class for other exceptions"""

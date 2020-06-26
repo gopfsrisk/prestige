@@ -55,273 +55,19 @@ def list_to_text(list_items, str_filename, int_rowlength=10):
             else:
                 file_handler.write(f"'{item}', ")
 
-# get dv and corresponding date
-def dv_and_date(filepath, DV, date_col, dv_filename, dv_delimiter, list_dv_usecols, unique_id, date_filename, date_delimiter, list_date_usecols):
-    # change wd to get DV and date_col
-    os.chdir(filepath)
-    # get the dependent variable
-    df_dv = pd.read_csv(dv_filename, delimiter=dv_delimiter, usecols=list_dv_usecols)
-    # drop duplicate rows
-    df_dv.drop_duplicates(subset=unique_id, keep='first', inplace=True)
-    # get the application date so we can split into testing/training later
-    df_app_date = pd.read_csv(date_filename, delimiter=date_delimiter, usecols=list_date_usecols)
-    # drop duplicate rows
-    df_app_date.drop_duplicates(subset=unique_id, keep='first', inplace=True)
-    # merge df_dv and df_app_date
-    df = pd.merge(left=df_dv, right=df_app_date, on=unique_id, how='inner')
-    # print message
-    print('{0} and {1} are imported along with corresponding {2}. There are {3} rows in df.'.format(DV, date_col, unique_id, df.shape[0]))
-    del df_dv, df_app_date
-    return df
-
-# get list of data frames for which to iterate
-def list_df(filepath):
-    # set wd
-    os.chdir(filepath)
-    # get list of df
-    list_df_raw = os.listdir()
-    # remove any where last three chars are not txt or the AppOutcome table
-    list_df_raw = [x for x in list_df_raw if (x[-3:] == 'txt') and (x != 'AppOuctome.txt')]
-    return list_df_raw
-
-# import df and drop the cols we know we won't need
-def import_dedup_and_drop(filename, delimiter, unique_id, list_cols_to_drop):
-    # import data
-    df = pd.read_csv(filename, delimiter=delimiter)
-    # identify and drop duplicate 
-    if filename not in ['Debt.txt', 'Income.txt']:
-    	# get the number of duplicate rowS
-    	n_dup_rows = df[df.duplicated(subset=unique_id, keep='first')].shape[0]
-    	# drop the duplicates
-    	df.drop_duplicates(subset=unique_id, keep='first', inplace=True)
-    	# print message
-    	print('{0} rows with duplicate {1} dropped. {2} contains {3} rows.'.format(n_dup_rows, unique_id, filename, df.shape[0]))
-    # drop some of the vars we know we won't need
-    for col in list_cols_to_drop:
-        if col in list(df.columns):
-            df.drop([col], axis=1, inplace=True)
-    # print message
-    print('Success! {0} imported with {1} rows and {2} columns.'.format(filename, df.shape[0], df.shape[1]))
-    return df
-
-# convert id cols to categorical
-def id_to_cat(df, unique_id, filename):
-    counter = 0
-    for col in df.columns:
-        if ('Id' in col) or ('ID' in col) and (col != unique_id):
-            df[col] = df[col].astype(str)
-            counter += 1
-    # print message
-    print('{0} ID columns in {1} converted to strings.'.format(counter, filename))
-    return df
-
-# remove substring cols
-def remove_substring_cols(df, list_substr_to_drop, case_sensitive=True):
-	list_cols_to_drop = []
-	for col in list(df.columns):
-		for string_ in list_substr_to_drop:
-			if case_sensitive:
-				if string_ in col:
-					list_cols_to_drop.append(col)
-			else:
-				if string_.lower() in col.lower():
-					list_cols_to_drop.append(col)
-	# drop these cols from df
-	if list_cols_to_drop != []:
-		df.drop(list_cols_to_drop, axis=1, inplace=True)
-	# print message
-	print('{0} columns have been dropped.'.format(len(list_cols_to_drop)))     
-	# return the df
-	return df
-
-# aggregate 1 to many df
-def agg_one_to_many(df, unique_id, filename):
-    # get numeric  and non numeric cols
-    list_numeric_col = []
-    list_non_numeric_col = []
-    for col in df.columns:
-        if is_numeric_dtype(df[col]) and (col != unique_id):
-            list_numeric_col.append(col)
-        elif col != unique_id:
-            list_non_numeric_col.append(col)
-    
-    # get df_2.columns
-    list_df_col = [x for x in df.columns if x != unique_id]
-    
-    # we want min, max, med, sd, sum for each numeric var and mode for non numeric vars, so we will duplicate all numeric by 4
-    list_values = []
-    for col in list_df_col:
-        if col in list_numeric_col:
-            list_values.append(['min','max','median','mean','std','sum',pd.Series.nunique])
-        else:
-            list_values.append(pd.Series.nunique)
-
-    # get aggregate functions for each key
-    dict_aggregations = dict(zip(list_df_col, list_values))
-            
-    # aggregate by UniqueID
-    print('Aggregating {0}...Please be patient.'.format(filename))
-    df = df.groupby(unique_id, as_index=False).agg(dict_aggregations)
-    print('Finished aggregating {0}. {0} now contains {1} rows and {2} columns'.format(filename, df.shape[0], df.shape[1]))
-    
-    # get new col names
-    list_col_name = [unique_id]
-    for key in dict_aggregations:
-        if isinstance(dict_aggregations[key], list):
-            for val in dict_aggregations[key]:
-                if type(val) != str:
-                    val = 'unique'
-                # get new col name
-                col_name = '{0}_{1}'.format(key, val)
-                list_col_name.append(col_name)
-        else:
-            val = 'unique'
-            # get new col name
-            col_name = '{0}_{1}'.format(key, val)
-            list_col_name.append(col_name)
-            
-    # assign col names
-    df.columns = list_col_name
-    return df
-
-# find and remove common cols
-def remove_common_col(df_1, df_2, unique_id, filename):
-    list_overlapping_cols = []
-    for col in df_2.columns:
-        if col in list(df_1.columns) and (col != unique_id):
-            list_overlapping_cols.append(col)
-    # drop the overlapping columns from df_2
-    df_2.drop(list_overlapping_cols, axis=1, inplace=True)
-    # print message
-    print('{0} columns from {1} also in df have been dropped. df_2 now contains {2} columns.'.format(len(list_overlapping_cols), filename, df_2.shape[1]))
-    return df_2
-
-# get non-numeric cols
-def get_non_numeric(df):
-    list_non_numeric_cols = []
-    for col in df.columns:
-        if is_numeric_dtype(df[col]) == False:
-            list_non_numeric_cols.append(col)
-    # print message
-    print('There are {0} non-numeric columns in df.'.format(len(list_non_numeric_cols)))
-    return list_non_numeric_cols
-
-# divide df into training, valid, testing (prior to imputation
-def divide_df(df, date_col, thresh_valid_start, thresh_test_start):
-    df_train = df[df[date_col] < thresh_valid_start]
-    df_valid = df[(df[date_col] >= thresh_valid_start) & (df[date_col] < thresh_test_start)]
-    df_test = df[df[date_col] >= thresh_test_start]
-    # print message
-    print('df divided into training, validation, and testing for imputations.')
-    return df_train, df_valid, df_test
-
 # drop any columns with zero variance (i.e., all values are the same)
-def drop_no_var_cols(df):
-	# get columns that are the same
+def get_no_var_cols(df, bool_drop=True):
+	# get columns with no varince
 	list_same_col = []
 	for col in df.columns:
 		if len(pd.value_counts(df[col]).dropna()) <= 1:
 			list_same_col.append(col)
-	# drop these cols
-	df = df.drop(list_same_col, axis=1, inplace=False)
-	# print message
-	print('Columns with no variance dropped. df contains {0} columns.'.format(df.shape[1]))
-	return df
-
-# divide into testing and training
-def divide_test_train(df, date_col, thresh_valid_start, thresh_test_start):
-    df_train = df[df[date_col] < thresh_valid_start]
-    df_test = df[df[date_col] >= thresh_test_start]
-    # print message
-    print('df divided into training and testing for model fitting.')
-    return df_train, df_test
-
-# split train and test into X and y
-def split_train_test(df_train, df_test, list_drop_X, DV):
-    # train
-    X_train = df_train.drop(list_drop_X, axis=1)
-    y_train = df_train[DV]
-    # test
-    X_test = df_test.drop(list_drop_X, axis=1)
-    y_test = df_test[DV]
-    # print message
-    print('Training and testing each split into X and y.')
-    return X_train, y_train, X_test, y_test
-
-# get predictions and auc
-def predict_and_auc(model, test_data, y_test):
-    # get predicted probabilities
-    y_hat_prob = model.predict_proba(test_data)[:,1]
-    # get auc
-    auc = roc_auc_score(y_true=y_test, y_score=y_hat_prob)
-    # print message
-    print('AUC: {0:0.4}'.format(auc))
-    return auc
-
-# create auc plot
-def auc_plot(list_dfs, list_auc):
-    fig, ax = plt.subplots()
-    ax.set_title('AUC by Merged Dataframe')
-    ax.plot(list_dfs, list_auc)
-    ax.set_xticklabels(list_dfs, rotation=90)
-    fig.savefig('auc_by_df.png', bbox_inches='tight')
-    plt.show()
-    return fig
-
-# get feature importance
-def get_sorted_feat_imp(model, list_features, counter, auc):
-    feat_importance = model.feature_importances_
-    # put in df
-    df_imp = pd.DataFrame({'feature': list_features,
-                           'importance': feat_importance})
-    # sort it
-    df_imp = df_imp.sort_values(by=['importance'], ascending=False)
-    # write df_imp to csv
-    df_imp.to_csv('df_imp_{0}_{1:0.4f}.csv'.format(counter, auc), index=False)
-    # print message
-    print('Feature importance calculated, sorted, and saved.')
-    return df_imp
-
-# drop threshold features
-def drop_threshold_imp(df, df_imp, thresh_imp, list_df_keep):
-    # get the features not in the top thresh_imp
-    if df_imp.shape[0] > thresh_imp:
-        list_feats_to_drop = df_imp['feature'].iloc[thresh_imp:]
-        list_feats_to_drop = [x for x in list_feats_to_drop if x not in list_df_keep]
-        # drop them
-        df.drop(list_feats_to_drop, axis=1, inplace=True)
-        # print message
-        print('{0} features not in top {1} removed'.format(len(list_feats_to_drop), thresh_imp))
-    else:
-        # print message
-        print('There were no features removed.')
-    return df
-
-# ---------------------------------------------------------------------------------------
-# ---------------------------------------------------------------------------------------
-# define helper function for dropping no var cols
-def drop_no_var_cols(df):
-	# get columns that are the same
-	list_same_col = []
-	for col in df.columns:
-		if len(pd.value_counts(df[col]).dropna()) <= 1:
-			list_same_col.append(col)
-	# drop these cols
-	df = df.drop(list_same_col, axis=1, inplace=False)
-	return df
-
-# define function for making filepaths easier to use
-def edit_filepath(filepath, change_wd=True):
-	# remove emojis
-    filepath_no_emoji = filepath.encode('unicode-escape').decode('ASCII')
-	# final filepath
-    filepath_final = filepath_no_emoji.replace('\\x', '\\\\')
-	# change directory
-    if change_wd:
-    	os.chdir(filepath_final)
-    else:
-		# return filepath_final
-    	return filepath_final
+    # if bool_drop 
+    if bool_drop:
+	   # drop these cols
+	   df = df.drop(list_same_col, axis=1, inplace=False)
+    # return list_same_col
+	return list_same_col, df
 
 # define function for feature engineering
 def feature_engineering(df, 
@@ -544,22 +290,6 @@ def get_numeric_combos(list_numeric_cols, n_rand_combos, random_state):
 		list_all_eng_feats = random.sample(list_all_eng_feats, n_rand_combos)
 	return list_all_eng_feats
 
-# define helper function for getting numeric, non-binary columns
-def get_numeric(df, list_cols):
-	list_df_numeric = []
-	for col in list_cols:
-		if is_numeric_dtype(df[col]):
-			list_df_numeric.append(col)
-	return list_df_numeric
-
-# define function to get non numeric cols
-def get_non_numeric(df):
-	list_non_numeric_cols = []
-	for col in df.columns:
-		if is_numeric_dtype(df[col]) == False:
-			list_non_numeric_cols.append(col)
-	return list_non_numeric_cols
-
 # define function to get list of lists with combinations of features
 def minimum_combinations(list_features, min_feats, max_feats):
 	# get all combinations of features
@@ -579,37 +309,6 @@ def minimum_combinations(list_features, min_feats, max_feats):
 				list_model_features.append(list(tuple_feat_combos))
 	# return list_model_features
 	return list_model_features
-
-# determine minimum n rows for logistic regression
-def n_rows_training_testing(df, DV, date_col, prop_test=.5):
-	# get n features
-	n_feats = len([x for x in df.columns if x not in [DV, date_col]])
-	# get proportion in DV
-	prop_dv = np.sum(df[DV])/df.shape[0]
-	# get n rows
-	n_rows_train = math.ceil(10 * (n_feats/prop_dv))
-	# get prop for test
-	n_rows_test = math.ceil(n_rows_train * prop_test)
-	return n_rows_train, n_rows_test
-
-# define function for removing substrings
-def remove_substring_cols(df, list_substr_to_drop, case_sensitive=True):
-	list_cols_to_drop = []
-	for col in list(df.columns):
-		for string_ in list_substr_to_drop:
-			if case_sensitive:
-				if string_ in col:
-					list_cols_to_drop.append(col)
-			else:
-				if string_.lower() in col.lower():
-					list_cols_to_drop.append(col)
-	# drop these cols from df
-	if list_cols_to_drop != []:
-		df.drop(list_cols_to_drop, axis=1, inplace=True)
-	# print message
-	print('{0} columns have been dropped.'.format(len(list_cols_to_drop)))     
-	# return the df
-	return df
 
 # adverse action (catboost)
 def adverse_action(df_shaps, list_unique_id, list_y_actual, list_y_hat, n_reasons=5, drop_list=True):
@@ -646,31 +345,3 @@ def adverse_action(df_shaps, list_unique_id, list_y_actual, list_y_hat, n_reason
 	# return the df
 	return df
 
-# adverse action (logistic)
-def logistic_adverse_action(df_scaled_w_cols, list_coefficients, list_unique_id, list_y_actual, list_y_hat, n_reasons=5, drop_list=True):
-	# define function for generating list of reasons
-	def logistic_reasons(row_, n_reasons):
-		# multiply row_ by list_coefficients
-		ser_feat_wt = row_ * list_coefficients
-		# sort descending
-		ser_feat_wt_sorted = ser_feat_wt.sort_values(ascending=False)
-		# get the top n_reasons
-		list_reasons = list(ser_feat_wt_sorted[:n_reasons].index)
-		# return list_reasons
-		return list_reasons
-	# apply function
-	list_reasons = list(df_scaled_w_cols.apply(lambda x: logistic_reasons(row_=x[:], n_reasons=n_reasons), axis=1))
-	# create df
-	df = pd.DataFrame({'UniqueID': list_unique_id,
-					   'actual': list_y_actual,
-					   'y_hat': list_y_hat,
-					   'reasons': list_reasons})
-	# create separate cols for each adverse action
-	for i in range(n_reasons):
-		df['action_{0}'.format(i+1)] = df.apply(lambda x: x['reasons'][i], axis=1)
-	# if drop_list is True
-	if drop_list:
-		# drop reasons
-		df.drop('reasons', axis=1, inplace=True)
-	# return df
-	return df
