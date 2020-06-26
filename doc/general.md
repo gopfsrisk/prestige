@@ -39,7 +39,7 @@
 
 >>> # write dictionary to text file
 >>> dict_to_text(dict_=dict_, 
-             str_filename='dict_.txt')
+                 str_filename='dict_.txt')
 ```
 
 #
