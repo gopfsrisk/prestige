@@ -38,8 +38,8 @@
 >>> dict_ = {'key': 'value'}
 
 >>> # write dictionary to text file
->>> df_agg = dict_to_text(dict_=dict_, 
-                          str_filename='dict_.txt')
+>>> dict_to_text(dict_=dict_, 
+             str_filename='dict_.txt')
 ```
 
 #
