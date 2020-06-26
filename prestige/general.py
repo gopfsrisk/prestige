@@ -66,6 +66,9 @@ def list_to_text(list_items, str_filename, int_rowlength=10):
 
 # drop any columns with zero variance (i.e., all values are the same)
 def get_no_var_cols(df, bool_drop=True):
+    """
+    Takes a data frame and finds the columns with no variance.
+    """
 	# get columns with no varince
 	list_same_col = []
 	for col in df.columns:
