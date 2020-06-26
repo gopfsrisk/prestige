@@ -204,6 +204,48 @@
 
 #
 
+<h3>prestige.data_exploration.plot_dtypes_freq</h3>
+
+<p><i>function</i> prestige.data_exploration.plot_dtypes_freq(<i>df, filename, list_ignore_cols, tpl_figsize</i>)</p>
+
+<p>This function takes a data frame and returns a bar plot of numeric and non-numeric columns.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i><BR>
+			filename: <i>str, default=None</i><BR>
+			list_ignore_cols: <i>list, default=None</i><BR>
+			tpl_figsize: <i>tuple, default=(20,15)</i>	
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import plot_dtypes_freq
+
+>>> # plot the numeric and non-numeric columns
+>>> fig_dtypes = plot_dtypes_freq(df=df,
+	                              filename='fig_dtypes.png'
+                                  list_ignore_cols=['col1','col2'],
+                                  tpl_figsize=(20,15))
+```
+
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h3>prestige.data_exploration.plot_grid</h3>
 
 <p><i>function</i> prestige.data_exploration.plot_grid(<i>df, list_cols, int_nrows, int_ncols, filename, tpl_figsize, plot_type</i>)</p>

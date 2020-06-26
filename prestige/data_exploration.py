@@ -112,6 +112,12 @@ def plot_na_overall(df, filename, tpl_figsize=(10,15)):
 
 # check for proportion missing in each col
 def plot_na_col(df, filename, tpl_figsize=(10,15), flt_thresh_na=0.05):
+	"""
+	takes a data frame, a tuple indicating figure size, and a string 
+	filename (for saving the figure) and saves/returns a bar plot 
+	showing the proportion of missing data by column as well as a series 
+	with proprtion of missing data by column.
+	"""
 	# get the proportion na
 	ser_propna = df.isnull().sum()/df.shape[0]
 	# sort it
@@ -133,6 +139,11 @@ def plot_na_col(df, filename, tpl_figsize=(10,15), flt_thresh_na=0.05):
 
 # NaN heatmap
 def plot_na_heatmap(df, filename, tpl_figsize=(20,15), title_fontsize=15):
+	"""
+	takes a data frame, a tuple indicating figure size, a title fontsize, 
+	and a string filename (for saving the figure) and saves/returns a heatmap 
+	showing the occurences (rows) of missing data by column.
+	"""
 	# set up axis for plot
 	fig, ax = plt.subplots(figsize=tpl_figsize)
 	# generate title
