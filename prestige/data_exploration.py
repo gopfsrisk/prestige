@@ -85,6 +85,9 @@ def drop_no_variance(df):
 
 # pie chart of proportion NaN values
 def plot_na_overall(df, filename, tpl_figsize=(10,15)):
+	"""
+	takes a data frame and returns a pie chart of missing and not missing.
+	"""
 	# get total number missing
 	n_missing = np.sum(df.isnull().sum())
 	# get total observations
