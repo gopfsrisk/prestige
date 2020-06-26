@@ -198,6 +198,11 @@ def plot_dtypes_freq(df, filename, list_ignore_cols, tpl_figsize=(15,10)):
 
 # generate grid of plots
 def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15), plot_type='boxplot'):
+	"""
+	takes a data frame, a list of columns, an integer number of rows, an integer number of columns, a 
+	string filename (for saving the figure), a tuple indicating figure size, and a string plot 
+	type ('boxplot', 'histogram', or 'bar') and saves/returns a grid of desired plot type.
+	"""
 	# create axes
 	fig, ax = plt.subplots(nrows=int_nrows, ncols=int_ncols, figsize=tpl_figsize)
 	# fix overlap
@@ -300,6 +305,12 @@ def get_metrics(ser_col):
 
 # create descriptive statistics function
 def descriptives(df, list_cols, str_filename):
+	"""
+	takes a data frame, a list of columns, and a 
+	string filename (for saving the figure), and 
+	saves/returns a dataframe to a .csv file containing 
+	descriptive statistics for each column.
+	"""
 	# create list of columns
 	list_col_names = ['count','prop_na','prop_inf','min','max', 'range','mean','median','st_dev','variance','skewness','skewness_interp','kurtosis','kurtosis_interp','shapiro_pval','shapiro_interp']
 	# create empty df

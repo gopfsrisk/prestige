@@ -234,18 +234,6 @@
 
 #
 
-
-
-
-
-
-
-
-
-
-
-
-
 <h3>prestige.data_exploration.plot_grid</h3>
 
 <p><i>function</i> prestige.data_exploration.plot_grid(<i>df, list_cols, int_nrows, int_ncols, filename, tpl_figsize, plot_type</i>)</p>
@@ -306,6 +294,38 @@
 >>> df_descriptives = descriptives(df=df,
                                    list_cols=list_cols,
                                    filename='./img/plt_boxplotgrid.png')
+```
+
+#
+
+<h3>prestige.data_exploration.distribution_analysis</h3>
+
+<p><i>function</i> prestige.data_exploration.distribution_analysis(<i>df, str_datecol, list_numeric_cols, str_filename, int_length</i>)</p>
+
+<p>This function takes a data frame and a list of numeric columns for which to calculate and plot means by month.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i><BR>
+			str_datecol: <i>str, default=None</i><BR>
+			list_numeric_cols: <i>list, default=None</i><BR>
+			str_filename: <i>str, default=None</i><BR>
+			int_length: <i>int, default=100</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import distribution_analysis
+
+>>> # conduct distribution analysis
+>>> distribution_analysis(df=df,
+                      str_datecol='date_col',
+                      list_numeric_cols=['col1','col2'],
+                      str_filename='plt_dist.png',
+                      int_length=100)
 ```
 
 
