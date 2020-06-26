@@ -11,7 +11,7 @@ pd.options.mode.chained_assignment = None
 # get shape of df
 def get_shape(df):
 	"""
-	takes a data frame and returns the number of rows and number of columns.
+	Takes a data frame and returns the number of rows and number of columns.
 	"""
 	n_rows, n_cols = df.shape
 	# print message
@@ -42,6 +42,11 @@ def n_dup_rows(df):
 
 # define function to identify and drop features if they are all nan
 def drop_prop_nan(df, flt_thresh_na=1.0):
+	"""
+	Takes a data frame and a threshold for proportion of missing 
+	ows and returns lists for columns to drop, columns to keep, 
+	and a dataframe with the columns dropped.
+	"""
 	# get proportion missing by col
 	ser_propna = df.isnull().sum()/df.shape[0]
 	# get cols >= flt_thresh_na na
@@ -55,6 +60,10 @@ def drop_prop_nan(df, flt_thresh_na=1.0):
 
 # define function to identify and drop features if they have no variance
 def drop_no_variance(df):
+	"""
+	Takes a data frame and returns a list of columns with no 
+	variance and a data frame with those columns dropped.
+	"""
 	# instantiate empty list
 	list_no_var = []
 	# iterate through columns in df

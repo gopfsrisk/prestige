@@ -94,6 +94,30 @@
 
 #
 
+<h3>prestige.data_exploration.drop_no_variance</h3>
+
+<p><i>function</i> prestige.data_exploration.drop_no_variance(<i>df</i>)</p>
+
+<p>This function takes a data frame and returns a list of columns with no variance and a data frame with those columns dropped.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import drop_no_variance
+
+>>> # drop columns with no variance
+>>> list_no_var, df = drop_no_variance(df=df)
+```
+
+#
+
 
 
 
