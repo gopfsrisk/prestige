@@ -159,6 +159,9 @@ def plot_na_heatmap(df, filename, tpl_figsize=(20,15), title_fontsize=15):
 
 # frequency plot of data types
 def plot_dtypes_freq(df, filename, list_ignore_cols, tpl_figsize=(15,10)):
+	"""
+	Takes a data frame and returns a bar plot of numeric and non-numeric columns.
+	"""
 	# instantiate empty lists
 	list_numeric = []
 	list_non_numeric = []
