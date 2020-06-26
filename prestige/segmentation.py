@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 
 # define function to get inertia by n_clusters
 def plot_inertia(df_X, n_max_clusters, tpl_figsize, title_fontsize, axis_fontsize, str_figname):
+	"""
+	takes a scaled data frame, a number of clusters, and returns a plot to determine the best number of clusters.
+	"""
 	# instatiate list_inertia
 	list_inertia = []
 	# iterate through a range of clusters
