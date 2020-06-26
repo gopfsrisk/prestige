@@ -44,41 +44,31 @@
 
 #
 
-<h3>prestige.general.divide_df</h3>
+<h3>prestige.general.get_numeric_and_nonnumeric</h3>
 
-<p><i>function</i> prestige.general.divide_df(<i>df, date_col, thresh_valid_start, thresh_test_start</i>)</p>
+<p><i>function</i> prestige.general.get_numeric_and_nonnumeric(<i>df, list_ignore_cols</i>)</p>
 
-<p>This function splits a dataframe into training, validation, and testing dataframes based on dates.</p>
+<p>This function takes a data frame and finds the numeric and non-numeric columns while ignoring provided columns.</p>
 
 <table>
 	<tr>
 		<td>Parameters:</td>
 		<td>df: <i>dataframe, default=None</i><BR>
-			date_col: <i>str, default=None</i><BR>
-			thresh_valid_start: <i>datetime, default=None</i><BR>
-			thresh_test_start: <i>datetime, default=None</i>
+			list_ignore_cols: <i>list, default=None</i>
 	</tr>
 	<tr>
 		<td>Attributes:</td>
-		<td>df_train, df_valid, df_test: <i>tuple, dataframes.</i>
+		<td>list_numeric, list_non_numeric: <i>tuple, lists.</i>
 </table>
 
 
 <p><b>Example:</b></p>
 
 ```
->>> import datetime
->>> from prestige.general import divide_df
+>>> from prestige.general import get_numeric_and_nonnumeric
 
->>> # save datetime for when validation data starts
->>> thresh_valid_start = datetime.datetime(year=2016, month=1, day=1)
->>> # save threshold for when test data starts
->>> thresh_test_start = datetime.datetime(year=2016, month=7, day=1)
-
->>> # divide df into training, validation, and testing
->>> df_train, df_valid, df_test = divide_df(df=df, 
-                                            date_col='application_date', 
-                                            thresh_valid_start=thresh_valid_start, 
-                                            thresh_test_start=thresh_test_start)
+>>> # get numeric and non-numeric columns
+>>> list_numeric, list_non_numeric = get_numeric_and_nonnumeric(df=df,
+	                                                            list_ignore_cols=['col1','col2'])
 ```
 

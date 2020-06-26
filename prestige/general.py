@@ -12,6 +12,9 @@ import json
 
 # write dictionary to text
 def dict_to_text(dict_, str_filename):
+    """
+    Writes a dictionary to a text file.
+    """
     with open(str_filename, 'w') as file:
         file.write(json.dumps(dict_))
 
