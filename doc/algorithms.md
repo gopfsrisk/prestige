@@ -57,7 +57,7 @@
 
 <p><i>function</i> prestige.algorithms.ols_kfold_valid(<i>X, y, int_random_state, int_k_folds, flt_test_size, bool_fit_intercept, str_metric</i>)</p>
 
-<p>This class takes an X data frame, y array, random state value, k-folds value, test size proportion, fit intercept boolean, and a metric and completes k-fold OLS regression using train/test split with an average of the provided metric.</p>
+<p>This function takes an X data frame, y array, random state value, k-folds value, test size proportion, fit intercept boolean, and a metric and completes k-fold OLS regression using train/test split with an average of the provided metric.</p>
 
 <table>
 	<tr>

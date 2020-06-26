@@ -6,6 +6,9 @@ from sklearn.model_selection import train_test_split
 
 # linear regression class
 class OLSRegression:
+	"""
+	Takes an X data frame and y array and completes Ordinary Least Squares (OLS) regression.
+	"""
 	# initialize class
 	def __init__(self, fit_intercept=True):
 		self.fit_intercept = fit_intercept
@@ -56,6 +59,10 @@ class OLSRegression:
 
 # ols k-fold cross validation
 def ols_kfold_valid(X, y, int_random_state=42, int_k_folds=10, flt_test_size=0.33, bool_fit_intercept=True, str_metric='r2'):
+    """
+	Takes an X data frame, y array, random state value, k-folds value, test size proportion, fit intercept boolean, and a metric 
+	and completes k-fold OLS regression using train/test split with an average of the provided metric.
+    """
     list_eval_metric = []
     for i in range(int_k_folds):
         # add 1 to random_state
