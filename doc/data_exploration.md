@@ -146,14 +146,9 @@
 
 #
 
+<h3>prestige.data_exploration.plot_na_col</h3>
 
-
-
-
-
-<h3>prestige.data_exploration.plot_na</h3>
-
-<p><i>function</i> prestige.data_exploration.plot_na(<i>df, tpl_figsize, filename</i>)</p>
+<p><i>function</i> prestige.data_exploration.plot_na_col(<i>df, tpl_figsize, filename</i>)</p>
 
 <p>This function takes a data frame, a tuple indicating figure size, and a string filename (for saving the figure) and saves/returns a bar plot showing the proportion of missing data by column as well as a series with proprtion of missing data by column.</p>
 
@@ -169,12 +164,12 @@
 <p><b>Example:</b></p>
 
 ```
->>> from prestige.data_exploration import plot_na
+>>> from prestige.data_exploration import plot_na_col
 
 >>> # get sorted series of proprtion NaN and generate/save plot
->>> sort_ser_propna, fig_na = plot_na(df=df,
-                                      tpl_figsize=(10,15),
-                                      filename='./img/plt_prop_na.png')
+>>> sort_ser_propna, fig_na = plot_na_col(df=df,
+                                          tpl_figsize=(10,15),
+                                          filename='./img/plt_prop_na.png')
 ```
 
 #
