@@ -3,6 +3,9 @@ from sklearn.metrics import roc_auc_score, roc_curve
 
 # function for ROC curves
 def roc_auc_curve(y_true, y_hat, tpl_figsize=(10,10)):
+	"""
+	Takes an array of true binary values, an array of predicted probability, and figure size and returns an ROC AUC curve.
+	"""
 	# get roc auc
 	auc = roc_auc_score(y_true=y_true,
 		                y_score=y_hat)
