@@ -35,7 +35,7 @@
 >>> from prestige.general import dict_to_text
 
 >>> # create dictionary
->>> dict_ = {'key': value}
+>>> dict_ = {'key': 'value'}
 
 >>> # write dictionary to text file
 >>> df_agg = dict_to_text(dict_=dict_, 
