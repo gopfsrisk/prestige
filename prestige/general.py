@@ -40,6 +40,9 @@ def get_numeric_and_nonnumeric(df, list_ignore_cols):
 
 # write list to text file
 def list_to_text(list_items, str_filename, int_rowlength=10):
+    """
+    Writes a list to a text file with line breaks at provided row lengths.
+    """
     with open(str_filename, 'w') as file_handler:
         # iterate though each item in list
         for i, item in enumerate(list_items):
