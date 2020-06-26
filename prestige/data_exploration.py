@@ -10,6 +10,9 @@ pd.options.mode.chained_assignment = None
 
 # get shape of df
 def get_shape(df):
+	"""
+	takes a data frame and returns the number of rows and number of columns.
+	"""
 	n_rows, n_cols = df.shape
 	# print message
 	print(f'Rows: {n_rows}')

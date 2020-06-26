@@ -14,6 +14,36 @@
 
 #
 
+<h3>prestige.data_exploration.get_shape</h3>
+
+<p><i>function</i> prestige.data_exploration.get_shape(<i>df</i>)</p>
+
+<p>This function takes a data frame and returns the number of rows and number of columns.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import get_shape
+
+>>> # get number of rows and number of columns
+>>> n_rows, n_cols = get_shape(df=df)
+```
+
+#
+
+<a name="data exploration"></a><h2>prestige.data_exploration</h2>
+
+<p>Tools for exploring data.</p>
+
+#
+
 <h3>prestige.data_exploration.n_dup_rows</h3>
 
 <p><i>function</i> prestige.data_exploration.n_dup_rows(<i>df</i>)</p>
