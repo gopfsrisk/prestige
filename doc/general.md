@@ -103,3 +103,33 @@
                  str_filename='list_.txt',
                  int_rowlength=2)
 ```
+
+#
+
+<h3>prestige.general.get_no_var_cols</h3>
+
+<p><i>function</i> prestige.general.get_no_var_cols(<i>df, bool_drop</i>)</p>
+
+<p>This function takes a data frame and finds the columns with no variance.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>dataframe, default=None</i><BR>
+			bool_drop: <i>bool, default=True</i>
+	</tr>
+	<tr>
+		<td>Attributes:</td>
+		<td>list_no_var_cols, df: <i>tuple, list and dataframe.</i>
+</table>
+
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.general import get_no_var_cols
+
+>>> # get numeric and non-numeric columns
+>>> list_no_var_cols, df = get_no_var_cols(df=df,
+	                                   bool_drop=True)
+```
