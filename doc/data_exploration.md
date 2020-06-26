@@ -68,6 +68,39 @@
 
 #
 
+<h3>prestige.data_exploration.drop_prop_nan</h3>
+
+<p><i>function</i> prestige.data_exploration.drop_prop_nan(<i>df, flt_thresh_na</i>)</p>
+
+<p>This function takes a data frame and a threshold for proportion of missing rows and returns lists for columns to drop, columns to keep, and a dataframe with the columns dropped.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i><BR>
+			flt_thresh_na: <i>float, default=1.0</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import drop_prop_nan
+
+>>> # drop columns with the proportion provided missing
+>>> list_propna_drop, list_propna_keep, df = drop_prop_nan(df=df,
+	                                                   flt_thresh_na=1.0)
+```
+
+#
+
+
+
+
+
+
+
+
 <h3>prestige.data_exploration.plot_na</h3>
 
 <p><i>function</i> prestige.data_exploration.plot_na(<i>df, tpl_figsize, filename</i>)</p>

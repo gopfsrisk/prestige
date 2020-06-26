@@ -22,6 +22,9 @@ def get_shape(df):
 
 # check for duplicate rows
 def n_dup_rows(df):
+	"""
+	Takes a data frame and returns the number of duplicate rows.
+	"""
 	# get n rows in df
 	nrows_df = df.shape[0]
 	# drop the duplicates
