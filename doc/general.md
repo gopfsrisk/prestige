@@ -69,6 +69,6 @@
 
 >>> # get numeric and non-numeric columns
 >>> list_numeric, list_non_numeric = get_numeric_and_nonnumeric(df=df,
-	                                                            list_ignore_cols=['col1','col2'])
+	                                                        list_ignore_cols=['col1','col2'])
 ```
 
