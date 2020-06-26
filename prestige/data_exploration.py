@@ -334,6 +334,10 @@ def descriptives(df, list_cols, str_filename):
 
 # define function for distribution analysis
 def distribution_analysis(df, str_datecol, list_numeric_cols, str_filename, int_length=100):
+	"""
+	takes a data frame and a list of numeric columns for which to calculate and plot means 
+	by month.
+	"""
 	# extend list numeric to include the date column
 	list_numeric_cols.append(str_datecol)
 	# subset df to the list
