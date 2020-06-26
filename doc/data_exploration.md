@@ -118,7 +118,33 @@
 
 #
 
+<h3>prestige.data_exploration.plot_na_overall</h3>
 
+<p><i>function</i> prestige.data_exploration.plot_na_overall(<i>df, filename, tpl_figsize</i>)</p>
+
+<p>This function takes a data frame and returns a pie chart of missing and not missing.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>df: <i>df, default=None</i><BR>
+			filename: <i>str, default=None</i><BR>
+			tpl_figsize: <i>tpl, default=(10,15)</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.data_exploration import plot_na_overall
+
+>>> # create pie chart of missing and non missing values
+>>> fig = plot_na_overall(df=df,
+	                  filename='fig_nan_pie.png',
+	                  tpl_figsize=(10,15))
+```
+
+#
 
 
 
