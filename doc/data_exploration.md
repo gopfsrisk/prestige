@@ -227,7 +227,7 @@
 
 >>> # plot the numeric and non-numeric columns
 >>> fig_dtypes = plot_dtypes_freq(df=df,
-	                              filename='fig_dtypes.png'
+	                          filename='fig_dtypes.png'
                                   list_ignore_cols=['col1','col2'],
                                   tpl_figsize=(20,15))
 ```
