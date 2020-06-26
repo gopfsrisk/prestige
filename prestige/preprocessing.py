@@ -5,6 +5,10 @@ import math
 
 # create a binaritizer
 class Binaritizer(BaseEstimator, TransformerMixin):
+	"""
+	Finds the proportion missing of features and converts them to binary if the proportion missing is 
+	greater than or equal to threshold_na.
+	"""
 	# initialize class
 	def __init__(self, threshold_na, inplace=False):
 		self.threshold_na = threshold_na
@@ -37,6 +41,10 @@ class Binaritizer(BaseEstimator, TransformerMixin):
 
 # data cleaning function
 def cleanme(list_transformers, X_train, y_train, X_test, y_test):
+	"""
+	Applies each transformer from a list of transformers on train and test data for streamlined data 
+	preprocessing.
+	"""
 	for i, transformer in enumerate(list_transformers):
 		tool = transformer
 		# X_train
@@ -55,6 +63,9 @@ def cleanme(list_transformers, X_train, y_train, X_test, y_test):
 
 # create mode imputer
 class ImputerMode(BaseEstimator, TransformerMixin):
+	"""
+	Imputes each feature's mode for missing values.
+	"""
 	# initialize class
 	def __init__(self, list_cols, inplace=True):
 		self.list_cols = list_cols
@@ -84,6 +95,9 @@ class ImputerMode(BaseEstimator, TransformerMixin):
 
 # create median imputer
 class ImputerNumeric(BaseEstimator, TransformerMixin):
+	"""
+	Imputes each feature's 'median' or 'mean' for missing values.
+	"""
 	# initialize class
 	def __init__(self, list_cols, metric='median', inplace=True):
 		self.list_cols = list_cols
@@ -120,6 +134,9 @@ class ImputerNumeric(BaseEstimator, TransformerMixin):
 
 # string imputer
 class ImputerString(BaseEstimator, TransformerMixin):
+	"""
+	Imputes a user provided string for NaN values.
+	"""
 	# initialize class
 	def __init__(self, list_cols, str_='MISSING', inplace=True):
 		self.list_cols = list_cols
@@ -151,6 +168,9 @@ class ImputerString(BaseEstimator, TransformerMixin):
 
 # create splitter
 class SplitterMetric(BaseEstimator, TransformerMixin):
+	"""
+	Creates binary column where values >= median or mean are converted to 1 and others are 0.
+	"""
 	# initialize class
 	def __init__(self, list_cols, metric='median', inplace=False):
 		self.list_cols = list_cols
@@ -186,6 +206,9 @@ class SplitterMetric(BaseEstimator, TransformerMixin):
 
 # create a target encoder
 class TargetEncoder(BaseEstimator, TransformerMixin):
+	"""
+	Converts categorical features into numeric by taking the central tendency metric of the outcome by category.
+	"""
 	# initialize class
 	def __init__(self, list_cols, metric='mean', rank=False, inplace=True):
 		self.list_cols = list_cols
