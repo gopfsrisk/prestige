@@ -37,6 +37,9 @@ def roc_auc_curve(y_true, y_hat, tpl_figsize=(10,10)):
 
 # define function to get binary eval metrics
 def bin_class_eval_metrics(model_classifier, X, y):
+	"""
+	Computes binary evaluation metrics and returns them as a dictionary.
+	"""
 	# generate predicted class
 	y_hat_class = model_classifier.predict(X)
 	# generate predicted probabilities
