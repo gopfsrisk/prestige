@@ -87,3 +87,33 @@ def ols_kfold_valid(X, y, int_random_state=42, int_k_folds=10, flt_test_size=0.3
     mean_eval_metric = np.mean(list_eval_metric)
     # return mean_eval_metric
     return mean_eval_metric
+
+# define function for fitting catboost model
+def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int_iterations, str_eval_metric, int_early_stopping_rounds, str_task_type='GPU', bool_classifier=True):
+	# pool data sets
+	# train
+	train_pool = cb.Pool(X_train, 
+	                     y_train,
+	                     cat_features=list_non_numeric)
+	# valid
+	valid_pool = cb.Pool(X_valid,
+	                     y_valid,
+	                     cat_features=list_non_numeric) 
+	# if fitting classifier
+	if bool_classifier:
+		# instantiate CatBoostClassifier model
+		model = cb.CatBoostClassifier(iterations=int_iterations,
+		                              eval_metric=str_eval_metric,
+		                              task_type=str_task_type)
+	else:
+		# instantiate CatBoostRegressor model
+		model = cb.CatBoostRegressor(iterations=int_iterations,
+		                             eval_metric=str_eval_metric,
+		                             task_type=str_task_type)
+	# fit to training
+	model.fit(train_pool,
+	          eval_set=[valid_pool], # can only handle one eval set when using gpu
+	          use_best_model=True,
+	          early_stopping_rounds=int_early_stopping_rounds)
+	# return model
+	return model
