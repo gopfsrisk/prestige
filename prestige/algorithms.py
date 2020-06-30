@@ -90,6 +90,9 @@ def ols_kfold_valid(X, y, int_random_state=42, int_k_folds=10, flt_test_size=0.3
 
 # define function for fitting catboost model
 def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int_iterations, str_eval_metric, int_early_stopping_rounds, str_task_type='GPU', bool_classifier=True):
+	"""
+	Fits a Catboost model for classification or regression.
+	"""
 	# pool data sets
 	# train
 	train_pool = cb.Pool(X_train, 
