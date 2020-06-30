@@ -99,10 +99,12 @@ class ImputerNumeric(BaseEstimator, TransformerMixin):
 	Imputes each feature's 'median' or 'mean' for missing values.
 	"""
 	# initialize class
-	def __init__(self, list_cols, metric='median', inplace=True):
+	def __init__(self, list_cols, metric='median', inplace=True, bool_ignore_neg=True):
 		self.list_cols = list_cols
 		self.metric = metric
 		self.inplace = inplace
+		self.bool_ignore_neg = bool_ignore_neg
+
 	# fit to X
 	def fit(self, X, y=None):
 		# make sure all cols in list_cols are in X
@@ -110,13 +112,18 @@ class ImputerNumeric(BaseEstimator, TransformerMixin):
 		# get metric for columns in list_cols
 		list_metric_ = []
 		for col in self.list_cols:
+			# get series with nas dropped
+			series_ = X[col].dropna()
+			# if bool_ignore_neg
+			if self.bool_ignore_neg:
+				series_ = series_[series_>=0]
 			# calculate metric
 			if self.metric == 'median':
 				# calculate median
-				metric_ = np.median(X[col].dropna())
+				metric_ = np.median(series_)
 			else:
 				# calculate mean
-				metric_ = np.mean(X[col].dropna())
+				metric_ = np.mean(series_)
 			# append to list
 			list_metric_.append(metric_)
 		# zip into dictionary

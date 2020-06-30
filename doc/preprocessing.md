@@ -98,7 +98,7 @@
 
 <h3>prestige.preprocessing.ImputerNumeric</h3>
 
-<p><i>class</i> prestige.preprocessing.ImputerNumeric(<i>list_cols, metric='median', inplace=True</i>)</p>
+<p><i>class</i> prestige.preprocessing.ImputerNumeric(<i>list_cols, metric='median', inplace=True, bool_ignore_neg=True</i>)</p>
 
 <p>This estimator imputes each feature's 'median' or 'mean' for missing values.</p>
 
@@ -107,7 +107,8 @@
 		<td>Parameters:</td>
 		<td>list_cols: <i>list, default=None</i><BR>
 		    metric: <i>str, default='median'</i><BR>
-		    inplace: <i>boolean, default=True</i>
+		    inplace: <i>boolean, default=True</i><BR>
+		    bool_ignore_neg: <i>boolean, default=True</i>
 	</tr>
 	<tr>
 		<td>Attributes:</td>
@@ -122,7 +123,8 @@
 >>> # instantiate transformer
 >>> transformer = ImputerNumeric(list_cols=list_cols, 
                                  metric='mean', 
-                                 inplace=True)
+                                 inplace=True,
+                                 bool_ignore_neg=True)
 
 >>> # fit transform training data
 >>> X_train = transformer.fit_transform(X_train)
