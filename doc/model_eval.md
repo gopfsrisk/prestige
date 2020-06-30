@@ -42,3 +42,34 @@
 	                     y_hat=y_hat,
 	                     figsize=(10,10))
 ```
+
+#
+
+<h3>prestige.model_eval.bin_class_eval_metrics</h3>
+
+<p><i>function</i> prestige.model_eval.bin_class_eval_metrics(<i>model_classifier, X, y</i>)</p>
+
+<p>This function takes a classifier model, X, and y. It generates predicted probabilities and predicted classes. It computes accuracy, geometric mean, precision, recall, f1, ROC AUC, precision-recall AUC, log loss, and brier score. The metrics are returned as a dictionary.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>model_classifier: <i>model, default=None</i><BR>
+			X: <i>df, default=None</i><BR>
+			y: <i>arr, default=None</i>
+	</tr>
+	<tr>
+		<td>Attributes:</td>
+		<td>dict_: <i>dict, evaluation metrics</i>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.model_eval import bin_class_eval_metrics
+
+>>> # generate metrics
+>>> dict_metrics = bin_class_eval_metrics(model_classifier=model,
+	                                  X=X_valid,
+	                                  y=y_valid
+```
