@@ -87,6 +87,47 @@
                                        str_metric='r2')
 ```
 
+#
+
+<h3>prestige.algorithms.fit_catboost_model</h3>
+
+<p><i>function</i> prestige.algorithms.fit_catboost_model(<i>X_train, y_train, X_valid, y_valid, list_non_numeric, int_iterations, str_eval_metric, int_early_stopping_rounds, str_task_type, bool_classifier</i>)</p>
+
+<p>This function wraps CatBoostClassifier and CatBoostRegressor to make fitting these models. It returns the fit model.</p>
+
+<table>
+	<tr>
+		<td>Parameters:</td>
+		<td>X_train: <i>df, default=None</i></BR>
+			y_train: <i>arr, default=None</i></BR>
+			X_valid: <i>df, default=None</i></BR>
+			y_valid: <i>arr, default=None</i></BR>
+			list_non_numeric: <i>list, default=None</i><BR>
+			int_iterations: <i>int, default=None</i><BR>
+			str_eval_metric: <i>str, default=None</i><BR>
+			int_early_stopping_rounds: <i>int, default=None</i><BR>
+			str_task_type: <i>str, default='GPU'</i><BR>
+			bool_classifier: <i>bool, default=True</i>
+	</tr>
+</table>
+
+<p><b>Example:</b></p>
+
+```
+>>> from prestige.algorithms import fit_catboost_model
+
+>>> # fit catboost classifier model
+>>> model = fit_catboost_model(X_train=X_train,
+	                           y_train=y_train,
+	                           X_valid=X_valid,
+	                           y_valid=y_valid,
+	                           list_non_numeric=list_non_numeric,
+	                           int_iterations=1000,
+	                           str_eval_metric='BrierScore',
+	                           int_early_stopping_rounds=100,
+	                           str_task_type='GPU',
+	                           bool_classifier=True)
+```
 
 
 
