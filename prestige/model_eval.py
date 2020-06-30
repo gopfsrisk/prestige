@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_auc_score, roc_curve
+from sklearn.metrics import (accuracy_score, fowlkes_mallows_score, precision_score,
+                             recall_score, f1_score, roc_auc_score, average_precision_score,
+                             log_loss, brier_score_loss)
 
 # function for ROC curves
 def roc_auc_curve(y_true, y_hat, tpl_figsize=(10,10)):
