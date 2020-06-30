@@ -38,12 +38,6 @@
 
 #
 
-<a name="data exploration"></a><h2>prestige.data_exploration</h2>
-
-<p>Tools for exploring data.</p>
-
-#
-
 <h3>prestige.data_exploration.n_dup_rows</h3>
 
 <p><i>function</i> prestige.data_exploration.n_dup_rows(<i>df</i>)</p>
