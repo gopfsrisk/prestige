@@ -66,19 +66,19 @@ def list_to_text(list_items, str_filename, int_rowlength=10):
 
 # drop any columns with zero variance (i.e., all values are the same)
 def get_no_var_cols(df, bool_drop=True):
-    """
-    Takes a data frame and finds the columns with no variance.
-    """
+	"""
+	Takes a data frame and finds the columns with no variance.
+	"""
 	# get columns with no varince
 	list_same_col = []
 	for col in df.columns:
 		if len(pd.value_counts(df[col]).dropna()) <= 1:
 			list_same_col.append(col)
-    # if bool_drop 
+	# if bool_drop 
 	if bool_drop:
 	   # drop these cols
 	   df = df.drop(list_same_col, axis=1, inplace=False)
-    # return list_same_col
+	# return list_same_col
 	return list_same_col, df
 
 # define function for feature engineering
