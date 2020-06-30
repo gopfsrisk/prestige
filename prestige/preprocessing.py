@@ -104,7 +104,6 @@ class ImputerNumeric(BaseEstimator, TransformerMixin):
 		self.metric = metric
 		self.inplace = inplace
 		self.bool_ignore_neg = bool_ignore_neg
-
 	# fit to X
 	def fit(self, X, y=None):
 		# make sure all cols in list_cols are in X

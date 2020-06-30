@@ -75,7 +75,7 @@ def get_no_var_cols(df, bool_drop=True):
 		if len(pd.value_counts(df[col]).dropna()) <= 1:
 			list_same_col.append(col)
     # if bool_drop 
-    if bool_drop:
+	if bool_drop:
 	   # drop these cols
 	   df = df.drop(list_same_col, axis=1, inplace=False)
     # return list_same_col
