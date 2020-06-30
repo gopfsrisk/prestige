@@ -118,15 +118,15 @@
 
 >>> # fit catboost classifier model
 >>> model = fit_catboost_model(X_train=X_train,
-	                           y_train=y_train,
-	                           X_valid=X_valid,
-	                           y_valid=y_valid,
-	                           list_non_numeric=list_non_numeric,
-	                           int_iterations=1000,
-	                           str_eval_metric='BrierScore',
-	                           int_early_stopping_rounds=100,
-	                           str_task_type='GPU',
-	                           bool_classifier=True)
+	                       y_train=y_train,
+	                       X_valid=X_valid,
+	                       y_valid=y_valid,
+	                       list_non_numeric=list_non_numeric,
+	                       int_iterations=1000,
+	                       str_eval_metric='BrierScore',
+	                       int_early_stopping_rounds=100,
+	                       str_task_type='GPU',
+	                       bool_classifier=True)
 ```
 
 
