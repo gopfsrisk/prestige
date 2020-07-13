@@ -71,5 +71,5 @@
 >>> # generate metrics
 >>> dict_metrics = bin_class_eval_metrics(model_classifier=model,
 	                                  X=X_valid,
-	                                  y=y_valid
+	                                  y=y_valid)
 ```
