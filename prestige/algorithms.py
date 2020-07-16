@@ -90,7 +90,7 @@ def ols_kfold_valid(X, y, int_random_state=42, int_k_folds=10, flt_test_size=0.3
     return mean_eval_metric
 
 # define function for fitting catboost model
-def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int_iterations, str_eval_metric, int_early_stopping_rounds, str_task_type='GPU', bool_classifier=True):
+def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int_iterations, str_eval_metric, int_early_stopping_rounds, str_task_type='GPU', bool_classifier=True, bool_class_weights=False):
 	"""
 	Fits a Catboost model for classification or regression.
 	"""
@@ -105,10 +105,22 @@ def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int
 	                     cat_features=list_non_numeric) 
 	# if fitting classifier
 	if bool_classifier:
+		# get list for class weights
+		if bool_class_weights:
+			# calculate prop 1
+			flt_prop_one = np.sum(y_train) / len(y_train)
+			# calculate prop 0
+			flt_prop_zero = 1 - flt_prop_one
+			# create list
+			list_class_weights = [flt_prop_one, flt_prop_zero] # this inverted because we are giving more weight to 1 (imbalanced target)
+	else:
+		list_class_weights = None
+
 		# instantiate CatBoostClassifier model
 		model = cb.CatBoostClassifier(iterations=int_iterations,
 		                              eval_metric=str_eval_metric,
-		                              task_type=str_task_type)
+		                              task_type=str_task_type,
+		                              class_weights=list_class_weights)
 	else:
 		# instantiate CatBoostRegressor model
 		model = cb.CatBoostRegressor(iterations=int_iterations,
