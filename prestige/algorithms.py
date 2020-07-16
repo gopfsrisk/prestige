@@ -113,8 +113,8 @@ def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int
 			flt_prop_zero = 1 - flt_prop_one
 			# create list
 			list_class_weights = [flt_prop_one, flt_prop_zero] # this inverted because we are giving more weight to 1 (imbalanced target)
-	else:
-		list_class_weights = None
+		else:
+			list_class_weights = None
 
 		# instantiate CatBoostClassifier model
 		model = cb.CatBoostClassifier(iterations=int_iterations,
