@@ -10,8 +10,6 @@
 
 <h1>prestige (version = 4.0.7)</h1>
 
-![Prestige](https://github.com/gopfsrisk/prestige/workflows/Python%20package/badge.svg)
-
 Install from Github via pip:
 - (Windows) - ```pip install git+https://github.com/gopfsrisk/prestige.git```
 - (Linux) - ```pip3 install git+https://github.com/gopfsrisk/prestige.git```
