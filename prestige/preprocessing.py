@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
 import math
+from sklearn.utils import resample
 
 # create a binaritizer
 class Binaritizer(BaseEstimator, TransformerMixin):
@@ -256,3 +257,53 @@ class TargetEncoder(BaseEstimator, TransformerMixin):
 			else:
 				X['{0}_targ_enc'.format(col)] = X[col].map(self.list_dict_[i])
 		return X
+
+# define function for oversampling
+def oversample(X_train, y_train, int_random_state=42):
+	# re-create df_train
+	df_train = pd.concat([X_train, y_train], axis=1)
+
+	# separate minority and majority classes
+	df_majority = df_train[df_train[y_train.name]==0]
+	df_minority = df_train[df_train[y_train.name]==1]
+
+	# upsample minority
+	df_minority_upsampled = resample(df_minority,
+	                                 replace=True, # sample with replacement
+	                                 n_samples=len(df_majority), # match number in majority class
+	                                 random_state=int_random_state)
+
+	# combine majority and upsampled minority
+	df_train = pd.concat([df_majority, df_minority_upsampled])
+
+	# split into X_train and y_train
+	X_train = df_train.drop(y_train.name, axis=1, inplace=False)
+	y_train = df_train[y_train.name]
+
+	# return
+	return X_train, y_train
+
+# define function for undersampling
+def undersample(X_train, y_train, int_random_state=42):
+	# re-create df_train
+	df_train = pd.concat([X_train, y_train], axis=1)
+
+	# separate minority and majority classes
+	df_majority = df_train[df_train[y_train.name]==0]
+	df_minority = df_train[df_train[y_train.name]==1]
+
+	# undersample majority
+	df_majority_undersampled = resample(df_majority,
+	                                    replace=True, # sample with replacement
+	                                    n_samples=len(df_minority), # match number in minority class
+	                                    random_state=int_random_state)
+
+	# combine df_minority and df_majority_undersampled
+	df_train = pd.concat([df_minority, df_majority_undersampled])
+
+	# split into X_train and y_train
+	X_train = df_train.drop(y_train.name, axis=1, inplace=False)
+	y_train = df_train[y_train.name]
+
+	# return
+	return X_train, y_train
