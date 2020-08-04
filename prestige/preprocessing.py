@@ -267,6 +267,9 @@ def oversample(X_train, y_train, int_random_state=42):
 	df_majority = df_train[df_train[y_train.name]==0]
 	df_minority = df_train[df_train[y_train.name]==1]
 
+	# delete df_train
+	del df_train
+
 	# upsample minority
 	df_minority_upsampled = resample(df_minority,
 	                                 replace=True, # sample with replacement
@@ -276,9 +279,17 @@ def oversample(X_train, y_train, int_random_state=42):
 	# combine majority and upsampled minority
 	df_train = pd.concat([df_majority, df_minority_upsampled])
 
+	# delete df_majority
+	del df_majority
+	# delete df_minority_upsampled
+	del df_minority_upsampled
+
 	# split into X_train and y_train
 	X_train = df_train.drop(y_train.name, axis=1, inplace=False)
 	y_train = df_train[y_train.name]
+
+	# delete df_train
+	del df_train
 
 	# return
 	return X_train, y_train
@@ -292,6 +303,9 @@ def undersample(X_train, y_train, int_random_state=42):
 	df_majority = df_train[df_train[y_train.name]==0]
 	df_minority = df_train[df_train[y_train.name]==1]
 
+	# delete df_train
+	del df_train
+
 	# undersample majority
 	df_majority_undersampled = resample(df_majority,
 	                                    replace=True, # sample with replacement
@@ -301,9 +315,17 @@ def undersample(X_train, y_train, int_random_state=42):
 	# combine df_minority and df_majority_undersampled
 	df_train = pd.concat([df_minority, df_majority_undersampled])
 
+	# delete df_minority
+	del df_minority
+	# delete df_majority_undersampled
+	del df_majority_undersampled
+
 	# split into X_train and y_train
 	X_train = df_train.drop(y_train.name, axis=1, inplace=False)
 	y_train = df_train[y_train.name]
+
+	# delete df_train
+	del df_train
 
 	# return
 	return X_train, y_train
