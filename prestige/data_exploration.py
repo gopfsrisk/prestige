@@ -255,6 +255,8 @@ def plot_grid(df, list_cols, int_nrows, int_ncols, filename, tpl_figsize=(20,15)
 def get_metrics(ser_col):
 	# get count
 	count = len(ser_col)
+	# get n unique
+	n_unique = ser_col.nunique()
 	# get proportion NaN
 	prop_na = np.sum(ser_col.apply(lambda x: 1 if pd.isnull(x) else 0))/count
 	# get proportion inf/-inf
@@ -301,7 +303,7 @@ def get_metrics(ser_col):
 	else:
 		shapiro_interp = 'Normal'
 	# return the metrics in a tuple
-	return count, prop_na, prop_inf, min_, max_, range_, mean_, median_, st_dev, var_, skewness_, skewness_interp, kurtosis_, kurtosis_interp, shapiro_pval, shapiro_interp
+	return count, n_unique, prop_na, prop_inf, min_, max_, range_, mean_, median_, st_dev, var_, skewness_, skewness_interp, kurtosis_, kurtosis_interp, shapiro_pval, shapiro_interp
 
 # create descriptive statistics function
 def descriptives(df, list_cols, str_filename):
@@ -312,7 +314,7 @@ def descriptives(df, list_cols, str_filename):
 	descriptive statistics for each column.
 	"""
 	# create list of columns
-	list_col_names = ['count','prop_na','prop_inf','min','max', 'range','mean','median','st_dev','variance','skewness','skewness_interp','kurtosis','kurtosis_interp','shapiro_pval','shapiro_interp']
+	list_col_names = ['count','n_unique','prop_na','prop_inf','min','max', 'range','mean','median','st_dev','variance','skewness','skewness_interp','kurtosis','kurtosis_interp','shapiro_pval','shapiro_interp']
 	# create empty df
 	df_empty = pd.DataFrame(columns=list_col_names)
 	# iterate through list_cols
