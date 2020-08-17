@@ -52,7 +52,8 @@ def list_to_text(list_items, str_filename, int_rowlength=10):
             if i == 1:
                 # add open bracket
                 file_handler.write(f"['{item}', ")
-            # if i is divisible by n_cols and we aren't on the last item
+                continue
+            # if i is divisible by int_rowlength and we aren't on the last item
             if (i % int_rowlength == 0) and (i < len(list_items)):
                 # start a new line
                 file_handler.write(f"'{item}',\n")
