@@ -39,7 +39,7 @@ def get_numeric_and_nonnumeric(df, list_ignore_cols):
     return list_numeric, list_non_numeric
 
 # write list to text file
-def list_to_text(list_items, str_filename, int_rowlength=10):
+def list_to_text(list_items, str_filename, str_list_name, int_rowlength=10):
     """
     Writes a list to a text file with line breaks at provided row lengths.
     """
@@ -51,8 +51,8 @@ def list_to_text(list_items, str_filename, int_rowlength=10):
             # if i == 1
             if i == 1:
                 # add open bracket
-                file_handler.write(f"['{item}', ")
-                continue
+                file_handler.write(f"{str_list_name} = ['{item}', ")
+                continue # prevents duplicate of first element
             # if i is divisible by int_rowlength and we aren't on the last item
             if (i % int_rowlength == 0) and (i < len(list_items)):
                 # start a new line
