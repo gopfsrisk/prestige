@@ -46,29 +46,29 @@ def list_to_text(list_items, str_filename, str_list_name=None, int_rowlength=10)
 	with open(str_filename, 'w') as file_handler:
 		# iterate though each item in list
 		for i, item in enumerate(list_items):
-		    # add 1 to i to make things easier
-		    i += 1
-		    # if i == 1
-		    if i == 1:
-		    	# if we want a list name
-		    	if str_list_name is not None:
-		    		# add list name and open bracket
-		        	file_handler.write(f"{str_list_name} = ['{item}', ")
-		        else:
-		        	# add open bracket
-		        	file_handler.write(f"['{item}', ")
-		        continue # prevents duplicate of first element
-		    # if i is divisible by int_rowlength and we aren't on the last item
-		    if (i % int_rowlength == 0) and (i < len(list_items)):
-		        # start a new line
-		        file_handler.write(f"'{item}',\n")
-		    # if we are at the end of the list
-		    elif i == (len(list_items)):
-		        # write the final item with no comma
-		        file_handler.write(f"'{item}']")
-		    # write item with comma and space
-		    else:
-		        file_handler.write(f"'{item}', ")
+			# add 1 to i to make things easier
+			i += 1
+			# if i == 1
+			if i == 1:
+				# if we want a list name
+				if str_list_name is not None:
+					# add list name and open bracket
+			    	file_handler.write(f"{str_list_name} = ['{item}', ")
+			    else:
+			    	# add open bracket
+			    	file_handler.write(f"['{item}', ")
+			    continue # prevents duplicate of first element
+			# if i is divisible by int_rowlength and we aren't on the last item
+			if (i % int_rowlength == 0) and (i < len(list_items)):
+			    # start a new line
+			    file_handler.write(f"'{item}',\n")
+			# if we are at the end of the list
+			elif i == (len(list_items)):
+			    # write the final item with no comma
+			    file_handler.write(f"'{item}']")
+			# write item with comma and space
+			else:
+			    file_handler.write(f"'{item}', ")
 
 # drop any columns with zero variance (i.e., all values are the same)
 def get_no_var_cols(df, bool_drop=True):
