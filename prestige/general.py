@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import math
 import json
 import xmltodict
+from flatten_json import flatten
 
 # define function for flattening xml
 def flatten_xml(str_xml):
