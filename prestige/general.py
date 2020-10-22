@@ -9,6 +9,26 @@ import catboost as cb
 import matplotlib.pyplot as plt
 import math
 import json
+import xmltodict
+
+# define function for flattening xml
+def flatten_xml(str_xml):
+	"""
+	Parameters
+	----------
+	str_xml : STR
+	    String of XML.
+
+	Returns
+	-------
+	Dictionary of all keys and values from XML.
+	"""
+	# convert str_xml to dictionary
+	dict_str_xml = xmltodict.parse(str_xml)
+	# flatten dict_str_xml
+	dict_str_xml_flat = flatten(dict_str_xml)
+	# return
+	return dict_str_xml_flat
 
 # write dictionary to text
 def dict_to_text(dict_, str_filename):
