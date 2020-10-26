@@ -83,7 +83,7 @@ def bin_class_eval_metrics(model_classifier, X, y):
 	return dict_
 
 # define function for pd plots
-def partial_density_plots(model, X_train, y_train, bool_prob=True, int_plot_length=100, str_filename='./img/plt_pdp.png'):
+def partial_dependence_plots(model, X_train, y_train, bool_prob=True, int_plot_length=100, str_filename='./img/plt_pdp.png'):
 	"""
 	Takes a model, data frame of features (X_train), actual target values (y_train),
 	boolean for probability (bool_prob), number of subplots in each plot (int_plot_length),
