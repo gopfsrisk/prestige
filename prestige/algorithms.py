@@ -90,7 +90,7 @@ def ols_kfold_valid(X, y, int_random_state=42, int_k_folds=10, flt_test_size=0.3
     return mean_eval_metric
 
 # define function for fitting catboost model
-def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int_iterations, str_eval_metric, int_early_stopping_rounds, str_task_type='GPU', bool_classifier=True, list_class_weights=None, dict_monotone_constraints=None):
+def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int_iterations, str_eval_metric, int_early_stopping_rounds, str_task_type='GPU', bool_classifier=True, list_class_weights=None, dict_monotone_constraints=None, int_random_state=None):
 	"""
 	Fits a Catboost model for classification or regression.
 	"""
@@ -110,13 +110,15 @@ def fit_catboost_model(X_train, y_train, X_valid, y_valid, list_non_numeric, int
 		                              eval_metric=str_eval_metric,
 		                              task_type=str_task_type,
 		                              class_weights=list_class_weights,
-		                              monotone_constraints=dict_monotone_constraints)
+		                              monotone_constraints=dict_monotone_constraints,
+		                              random_state=int_random_state)
 	else:
 		# instantiate CatBoostRegressor model
 		model = cb.CatBoostRegressor(iterations=int_iterations,
 		                             eval_metric=str_eval_metric,
 		                             task_type=str_task_type,
-		                             monotone_constraints=dict_monotone_constraints)
+		                             monotone_constraints=dict_monotone_constraints,
+		                             random_state=int_random_state)
 	# fit to training
 	model.fit(train_pool,
 	          eval_set=[valid_pool], # can only handle one eval set when using gpu
